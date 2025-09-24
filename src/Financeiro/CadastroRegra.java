@@ -4,6 +4,12 @@ import projeto.Constantes;
 
 public class CadastroRegra extends JFrame {
     private JPanel PainelCadastroRegra;
+    private JLabel lbCadastramentoDeRegras;
+    private JTextField textField1;
+    private JTextArea textArea1;
+    private JRadioButton valorFixoRadioButton;
+    private JRadioButton porcentagemDoSalárioRadioButton;
+    private JTextField textField2;
 
     public CadastroRegra() {
         setContentPane(PainelCadastroRegra);
@@ -12,6 +18,5 @@ public class CadastroRegra extends JFrame {
         setSize(Constantes.ALTURA_PADRAO_PAGINA, Constantes.LARGURA_PADRAO_PAGINA);
         setLocationRelativeTo(null);
         setVisible(true);
-
     }
 }
