@@ -4,5 +4,6 @@ public class Financeiro {
     public static void main(String[] args) {
         new FinanceiroTelaInicial();
         new CadastroRegra();
+        new VisualizaRegra();
     }
 }
