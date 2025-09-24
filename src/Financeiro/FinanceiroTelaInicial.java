@@ -11,6 +11,7 @@ class FinanceiroTelaInicial extends JFrame {
     private JButton gerarFolhaDePagamentoButton;
     private JButton listarFuncionáriosButton;
     private JLabel lbTelaInicial;
+    private JButton voltarButton;
 
     public FinanceiroTelaInicial() {
         setContentPane(PainelFinanceiro);
