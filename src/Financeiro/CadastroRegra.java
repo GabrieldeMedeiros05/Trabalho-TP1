@@ -10,6 +10,7 @@ public class CadastroRegra extends JFrame {
     private JRadioButton valorFixoRadioButton;
     private JRadioButton porcentagemDoSalárioRadioButton;
     private JTextField textField2;
+    private JButton voltarButton;
 
     public CadastroRegra() {
         setContentPane(PainelCadastroRegra);

@@ -6,7 +6,7 @@ public class VisualizaRegra extends JFrame {
     private JPanel PainelVisualizaRegra;
     private JLabel visualizarRegrasSalariaisLabel;
     private JTable tabelaDeRegras;
-
+    private JButton voltarButton;
 
 
     public VisualizaRegra() {
