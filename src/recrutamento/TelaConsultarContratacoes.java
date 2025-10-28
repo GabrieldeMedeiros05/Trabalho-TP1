@@ -1,7 +1,7 @@
 package recrutamento;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class TelaConsultarContratacoes extends JFrame {
     public TelaConsultarContratacoes() {
