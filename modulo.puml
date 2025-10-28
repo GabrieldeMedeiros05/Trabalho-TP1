@@ -1,0 +1,123 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+' ===== ENUNS =====
+enum StatusVaga {
+ABERTA
+FECHADA
+PREENCHIDA
+}
+enum RegimeContratacao {
+CLT
+ESTAGIO
+PJ
+}
+enum StatusContratacao {
+SOLICITADA
+AUTORIZADA
+REJEITADA
+EFETIVADA
+}
+enum StatusCandidatura {
+PENDENTE
+EM_ANALISE
+APROVADO
+REPROVADO
+}
+
+' ===== CLASSES DE OUTROS MÓDULOS (stubs) =====
+class Usuario {
+  - id : long
+  - nome : String
+  - email : String
+}
+
+class Gestor {
+  - idGestor : long
+  - nome : String
+  - email : String
+  + autorizarContratacao(contr : Contratacao) : void
+}
+
+class Candidato {
+  - idCandidato : long
+  - nome : String
+  - email : String
+}
+
+class Candidatura {
+  - idCandidatura : long
+  - status : StatusCandidatura
+  - dataCandidatura : LocalDate
+  - candidato : Candidato
+  - vaga : Vaga
+  + atualizarStatus(novo : StatusCandidatura) : void
+}
+
+' ===== SUAS CLASSES =====
+class Recrutador extends Usuario {
+  - vagasResponsavel : List<Vaga>
+  + atribuirVaga(v : Vaga) : void
+  + consultarVagas() : List<Vaga>
+  + gerenciarCandidatura(c : Candidatura, novo : StatusCandidatura) : void
+  + agendarEntrevista(c : Candidatura, dataHora : LocalDateTime, avaliador : String) : Entrevista
+}
+
+class Vaga {
+  - idVaga : long
+  - cargo : String
+  - salarioBase : double
+  - requisitos : String
+  - departamento : String
+  - status : StatusVaga
+  - regimeContratacao : RegimeContratacao
+  - dataAbertura : LocalDate
+  - gestorResponsavel : Gestor
+  - recrutadorDesignado : Recrutador
+  - candidaturas : List<Candidatura>
+  + abrirVaga() : void
+  + fecharVaga() : void
+  + adicionarCandidatura(c : Candidatura) : void
+  + designarRecrutador(r : Recrutador) : void
+}
+
+class Entrevista {
+  - idEntrevista : long
+  - dataHora : LocalDateTime
+  - avaliador : String
+  - nota : double
+  - parecer : String
+  - candidatura : Candidatura
+  + registrarResultado(nota : double, parecer : String) : void
+}
+
+class Contratacao {
+  - idContratacao : long
+  - candidatoAprovado : Candidato
+  - vagaPreenchida : Vaga
+  - dataSolicitacao : LocalDate
+  - dataAutorizacao : LocalDate
+  - dataAdmissao : LocalDate
+  - regimeContratacaoFinal : RegimeContratacao
+  - status : StatusContratacao
+  + solicitar(r : Recrutador) : void
+  + autorizar(g : Gestor) : void
+  + efetivar() : void
+}
+
+' ===== RELACIONAMENTOS =====
+Usuario <|-- Recrutador
+
+Vaga --> Gestor : gestorResponsavel (1)
+Vaga --> Recrutador : recrutadorDesignado (0..1)
+Recrutador --> "0..*" Vaga : vagasResponsavel
+
+Vaga o-- "0..*" Candidatura : candidaturas
+Candidatura --> Candidato
+Candidatura --> Vaga
+
+Entrevista --> Candidatura
+
+Contratacao --> Candidato : candidatoAprovado
+Contratacao --> Vaga : vagaPreenchida
+@enduml
