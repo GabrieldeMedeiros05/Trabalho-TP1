@@ -1,4 +1,4 @@
-package recrutamento;
+package recrutamento.ui;
 
 import javax.swing.*;
 
