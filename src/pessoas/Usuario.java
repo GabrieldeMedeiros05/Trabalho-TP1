@@ -1,6 +1,6 @@
 package pessoas;
 
-import AdministracaoGestao.gestao.Gestor;
+import AdministracaoGestao.gestao.GestorMaster;
 import java.util.ArrayList;
 import recrutamento.excecoes.AutorizacaoException;
 
@@ -13,7 +13,7 @@ public class Usuario extends Pessoa {
 
     private ArrayList<Usuario> usuarios = new ArrayList<>();
 
-    public Usuario (long idUsuario, String login, String senha, String tipo, Gestor gestor)  {
+    public Usuario (long idUsuario, String login, String senha, String tipo, GestorMaster gestor)  {
 
         if (gestor != null) { // ou uma verificação mais complexa
         
@@ -22,7 +22,7 @@ public class Usuario extends Pessoa {
         this.senha = senha;
         this.tipo = tipo;
         } else {
-            throw new AutorizacaoException("Apenas gestores podem alterar os dados do usuário.");
+            throw new AutorizacaoException("Apenas o GestorMaster pode alterar os dados do usuário.");
         } 
     }
 
@@ -46,43 +46,43 @@ public class Usuario extends Pessoa {
         return this.tipo;
     } 
 
-    public void setIdUsuario (long idUsuario, Gestor gestor) {
+    public void setIdUsuario (long idUsuario, GestorMaster gestor) {
 
         if (gestor != null) { // ou uma verificação mais complexa
         
         this.idUsuario = idUsuario;
         } else {
-            throw new AutorizacaoException("Apenas gestores podem alterar os dados do usuário.");
+            throw new AutorizacaoException("Apenas o GestorMaster pode alterar os dados do usuário.");
         }
     }
 
-    public void setLogin (String login, Gestor gestor) {
+    public void setLogin (String login, GestorMaster gestor) {
 
         if (gestor != null) { // ou uma verificação mais complexa
         
         this.login = login;
         } else {
-            throw new AutorizacaoException("Apenas gestores podem alterar os dados do usuário.");
+            throw new AutorizacaoException("Apenas o GestorMaster pode alterar os dados do usuário.");
         }
     }
 
-    public void setSenha (String senha, Gestor gestor) {
+    public void setSenha (String senha, GestorMaster gestor) {
 
         if (gestor != null) { // ou uma verificação mais complexa
         
         this.senha = senha;
         } else {
-            throw new AutorizacaoException("Apenas gestores podem alterar os dados do usuário.");
+            throw new AutorizacaoException("Apenas o GestorMaster pode alterar os dados do usuário.");
         }
     }
 
-    public void setTipo (String tipo, Gestor gestor) {
+    public void setTipo (String tipo, GestorMaster gestor) {
 
         if (gestor != null) { // ou uma verificação mais complexa
         
         this.tipo = tipo;
         } else {
-            throw new AutorizacaoException("Apenas gestores podem alterar os dados do usuário.");
+            throw new AutorizacaoException("Apenas o GestorMaster pode alterar os dados do usuário.");
         }
     }
 
