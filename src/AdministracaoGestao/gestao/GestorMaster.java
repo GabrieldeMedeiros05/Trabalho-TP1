@@ -6,13 +6,13 @@ import pessoas.Usuario;
 import recrutamento.excecoes.*;
 
 
-public class Gestor extends Pessoa {
+public class GestorMaster extends Pessoa {
     
     private String loginMaster;
     private String senhaMaster;
     private ArrayList<Usuario> usuarios = new ArrayList<>();
 
-    Gestor (String nome, String cpf, String status, String departamento, String loginMaster, String senhaMaster) {
+    GestorMaster (String nome, String cpf, String status, String departamento, String loginMaster, String senhaMaster) {
 
         super(nome,cpf,status,departamento);
 
