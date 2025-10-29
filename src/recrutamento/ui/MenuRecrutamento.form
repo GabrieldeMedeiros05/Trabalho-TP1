@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="recrutamento.ui.MenuRecrutamento">
+  <grid id="27dc6" binding="contentPane" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="12" vgap="12">
+    <margin top="20" left="20" bottom="20" right="20"/>
+    <constraints>
+      <xy x="20" y="20" width="740" height="400"/>
+    </constraints>
+    <properties>
+      <background color="-397072"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="b15ef" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="8" vgap="0">
+        <margin top="0" left="0" bottom="4" right="0"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1708832"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="95f32" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="2" vgap="0">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-986896"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="b0a88" class="javax.swing.JLabel" binding="lblTitulo">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="24" style="1"/>
+                  <foreground color="-14539218"/>
+                  <text value="Modulo Recrutamento"/>
+                </properties>
+              </component>
+              <component id="2e6fc" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <horizontalTextPosition value="2"/>
+                  <text value=" vagas, candidaturas, entrevistas e contratações. Protótipos prontos para navegação da Etapa 1"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="e83a8" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="227ca" class="javax.swing.JButton" binding="sairButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Sair"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="c9e18" layout-manager="GridLayoutManager" row-count="5" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="12" vgap="0">
+        <margin top="8" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="d27c" class="javax.swing.JButton" binding="btnVagasCadastro">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="220" height="56"/>
+                <preferred-size width="260" height="64"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font size="14" style="1"/>
+              <text value="Vagas – Cadastrar/Editar"/>
+            </properties>
+          </component>
+          <component id="9c8df" class="javax.swing.JButton" binding="btnCandidatosListar">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="220" height="56"/>
+                <preferred-size width="260" height="64"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font size="14" style="1"/>
+              <text value="Candidatos – Listar"/>
+            </properties>
+          </component>
+          <component id="d256c" class="javax.swing.JButton" binding="btnCandidatosCadastrar">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="220" height="56"/>
+                <preferred-size width="260" height="64"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font size="14" style="1"/>
+              <text value="Candidatos – Cadastrar"/>
+            </properties>
+          </component>
+          <component id="b0d1d" class="javax.swing.JButton" binding="btnCandidaturaRealizar">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="220" height="56"/>
+                <preferred-size width="260" height="64"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font size="14" style="1"/>
+              <text value="Realizar Candidatura"/>
+            </properties>
+          </component>
+          <component id="395f8" class="javax.swing.JButton" binding="btnEntrevistaMarcar">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="220" height="56"/>
+                <preferred-size width="260" height="64"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font size="14" style="1"/>
+              <text value="Marcar Entrevista"/>
+            </properties>
+          </component>
+          <component id="3fe82" class="javax.swing.JButton" binding="btnContratacaoSolicitar">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="220" height="56"/>
+                <preferred-size width="260" height="64"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font size="14" style="1"/>
+              <text value="Solicitar Contratação"/>
+            </properties>
+          </component>
+          <component id="30a52" class="javax.swing.JButton" binding="btnContratacaoConsultar">
+            <constraints>
+              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="220" height="56"/>
+                <preferred-size width="260" height="60"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font size="14" style="1"/>
+              <text value="Consultar Contratações"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
