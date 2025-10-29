@@ -1,6 +1,8 @@
-package pessoas;
+package entidades;
 
 import java.util.ArrayList;
+
+import AdministracaoGestao.gestao.Gestor;
 
 public class Pessoa {
     
@@ -10,6 +12,18 @@ public class Pessoa {
     private String departamento;
 
     private ArrayList<Pessoa> pessoas;
+
+    public Pessoa () {
+
+    }
+
+    public Pessoa (String nome, String cpf_cnpj, String status, String departamento) {
+        
+        this.nome = nome;
+        this.cpf_cnpj = cpf_cnpj;
+        this.status = status;
+        this.departamento = departamento;
+    }
 
     public String getStatus () {
 
