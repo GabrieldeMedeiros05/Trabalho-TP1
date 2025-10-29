@@ -3,7 +3,7 @@ package AdministracaoGestao;
 import javax.swing.*;
 import projeto.Constantes;
 
-class AdministracaoGestaoDeUsuario extends JFrame {
+public class AdministracaoGestaoDeUsuario extends JFrame {
     private JPanel PainelUsuario;
     private JButton excluirButton;
     private JButton listarButton;
