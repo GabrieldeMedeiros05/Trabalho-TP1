@@ -1,9 +1,9 @@
-package AdministracaoGestao;
+package AdministracaoGestao.ui;
 
 import javax.swing.*;
 import projeto.Constantes;
 
-public class AdministracaoGestaoDeUsuario extends JFrame {
+class AdministracaoGestaoDeUsuario extends JFrame {
     private JPanel PainelUsuario;
     private JButton excluirButton;
     private JButton listarButton;

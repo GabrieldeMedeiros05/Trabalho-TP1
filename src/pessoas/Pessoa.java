@@ -2,6 +2,8 @@ package pessoas;
 
 import java.util.ArrayList;
 
+import AdministracaoGestao.gestao.Gestor;
+
 public class Pessoa {
     
     private String nome;
@@ -9,7 +11,19 @@ public class Pessoa {
     private String status;
     private String departamento;
 
-    private ArrayList<Pessoa> pessoas;
+    private ArrayList<Pessoa> pessoas = new ArrayList<>();
+
+    public Pessoa () {
+
+    }
+
+    public Pessoa (String nome, String cpf_cnpj, String status, String departamento) {
+        
+        this.nome = nome;
+        this.cpf_cnpj = cpf_cnpj;
+        this.status = status;
+        this.departamento = departamento;
+    }
 
     public String getStatus () {
 
