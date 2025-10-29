@@ -1,7 +1,7 @@
 package recrutamento.dominio;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
+import pessoas.Pessoa;
 
 /**
  * Representa uma Pessoa que se candidata a uma Vaga.

@@ -1,10 +1,9 @@
 package AdministracaoGestao.gestao;
 
 import java.util.ArrayList;
-
-import entidades.Pessoa;
-import entidades.Usuario;
+import pessoas.Pessoa;
 import pessoas.Usuario;
+import recrutamento.excecoes.*;
 
 
 public class Gestor extends Pessoa {
@@ -51,9 +50,9 @@ public class Gestor extends Pessoa {
         }
         
         
-       if (usuarioRemovido == false) {
+       if (usuarioEditado == false) {
            
-            throw new Exception("Usuário não encontrado.");
+            throw new RegraNegocioException("Usuário não encontrado.");
         }
     }
 
@@ -73,7 +72,7 @@ public class Gestor extends Pessoa {
 
         if (usuarioRemovido == false) {
            
-            throw new Exception("Usuário não encontrado.");
+            throw new RegraNegocioException("Usuário não encontrado.");
         }
     }
 
@@ -104,8 +103,7 @@ public class Gestor extends Pessoa {
 
         if (usuarioEncontrado == false) {
            
-            throw new Exception("Usuário não encontrado.");
-            return false;
+            throw new RegraNegocioException("Usuário não encontrado.");
         }
 
         return usuarioEncontrado;

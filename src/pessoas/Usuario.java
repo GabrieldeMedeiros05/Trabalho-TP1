@@ -1,8 +1,8 @@
 package pessoas;
 
-import java.util.ArrayList;
-
 import AdministracaoGestao.gestao.Gestor;
+import java.util.ArrayList;
+import recrutamento.excecoes.AutorizacaoException;
 
 public class Usuario extends Pessoa {
     
@@ -22,7 +22,7 @@ public class Usuario extends Pessoa {
         this.senha = senha;
         this.tipo = tipo;
         } else {
-            throw new SecurityException("Apenas gestores podem alterar os dados do usuário.");
+            throw new AutorizacaoException("Apenas gestores podem alterar os dados do usuário.");
         } 
     }
 
@@ -52,7 +52,7 @@ public class Usuario extends Pessoa {
         
         this.idUsuario = idUsuario;
         } else {
-            throw new SecurityException("Apenas gestores podem alterar os dados do usuário.");
+            throw new AutorizacaoException("Apenas gestores podem alterar os dados do usuário.");
         }
     }
 
@@ -62,7 +62,7 @@ public class Usuario extends Pessoa {
         
         this.login = login;
         } else {
-            throw new SecurityException("Apenas gestores podem alterar os dados do usuário.");
+            throw new AutorizacaoException("Apenas gestores podem alterar os dados do usuário.");
         }
     }
 
@@ -72,7 +72,7 @@ public class Usuario extends Pessoa {
         
         this.senha = senha;
         } else {
-            throw new SecurityException("Apenas gestores podem alterar os dados do usuário.");
+            throw new AutorizacaoException("Apenas gestores podem alterar os dados do usuário.");
         }
     }
 
@@ -82,7 +82,7 @@ public class Usuario extends Pessoa {
         
         this.tipo = tipo;
         } else {
-            throw new SecurityException("Apenas gestores podem alterar os dados do usuário.");
+            throw new AutorizacaoException("Apenas gestores podem alterar os dados do usuário.");
         }
     }
 
