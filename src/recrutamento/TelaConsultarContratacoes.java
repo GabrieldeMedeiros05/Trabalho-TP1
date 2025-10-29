@@ -1,7 +1,7 @@
 package recrutamento;
 
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
 public class TelaConsultarContratacoes extends JFrame {
     public TelaConsultarContratacoes() {
@@ -37,4 +37,5 @@ public class TelaConsultarContratacoes extends JFrame {
         add(new JScrollPane(tabela), BorderLayout.CENTER);
         add(acoes, BorderLayout.SOUTH);
     }
+
 }

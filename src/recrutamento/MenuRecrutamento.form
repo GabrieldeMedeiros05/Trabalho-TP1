@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="contentPane" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="12" vgap="12">
     <margin top="20" left="20" bottom="20" right="20"/>
     <constraints>
-      <xy x="20" y="20" width="742" height="406"/>
+      <xy x="20" y="20" width="740" height="400"/>
     </constraints>
     <properties>
       <background color="-397072"/>
@@ -161,18 +161,6 @@
             <properties>
               <font size="14" style="1"/>
               <text value="Consultar Contratações"/>
-            </properties>
-          </component>
-          <component id="5072d" class="javax.swing.JButton" binding="btnVagas">
-            <constraints>
-              <grid row="0" column="0" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <minimum-size width="220" height="56"/>
-                <preferred-size width="260" height="64"/>
-              </grid>
-            </constraints>
-            <properties>
-              <font size="14" style="1"/>
-              <text value="Vagas – Listar/Filtrar"/>
             </properties>
           </component>
         </children>
