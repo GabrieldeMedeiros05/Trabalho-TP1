@@ -37,4 +37,5 @@ public class TelaConsultarContratacoes extends JFrame {
         add(new JScrollPane(tabela), BorderLayout.CENTER);
         add(acoes, BorderLayout.SOUTH);
     }
+
 }
