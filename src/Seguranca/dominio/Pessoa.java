@@ -1,4 +1,4 @@
-package pessoas;
+package Seguranca.dominio;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ public class Pessoa {
     public Pessoa() {}
 
     public Pessoa (String nome, String cpf_cnpj, String status, String departamento) {
-        
+
         this.nome = nome;
         this.cpf_cnpj = cpf_cnpj;
         this.status = status;
@@ -45,6 +45,14 @@ public class Pessoa {
 
         return this.status;
     }
+    // Em Seguranca.dominio.Pessoa.java
+
+    // Adicionar getter para departamento (CRÍTICO PARA O REPOSITÓRIO CSV)
+    public String getDepartamento () { // Deve ser público
+        return this.departamento;
+    }
+
+// ... (resto dos getters e setters)
 
 
     public Pessoa pesquisar (String nome) {
@@ -56,7 +64,7 @@ public class Pessoa {
             }
         }
 
-        return null; 
+        return null;
     }
 
     // ... restante da classe

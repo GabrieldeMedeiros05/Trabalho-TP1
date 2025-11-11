@@ -1,16 +1,17 @@
 package AdministracaoGestao.gestao;
 
 import java.util.ArrayList;
-import pessoas.Pessoa;
-import pessoas.Usuario;
-import recrutamento.excecoes.*;
+import Seguranca.dominio.Pessoa;
+import Seguranca.dominio.Usuario;
+import Candidatura.excecoes.RegraNegocioException;
 
 
 public class GestorMaster extends Pessoa {
-    
+
     private String loginMaster;
     private String senhaMaster;
-    private ArrayList<Usuario> usuarios = new ArrayList<>();
+    private ArrayList<Usuario> usuarios = new ArrayList<>(); // Armazenamento interno de usuários
+
 
     GestorMaster (String nome, String cpf, String status, String departamento, String loginMaster, String senhaMaster) {
 
@@ -20,11 +21,12 @@ public class GestorMaster extends Pessoa {
 
         this.senhaMaster = senhaMaster;
 
-    }  
+    }
 
     public Usuario cadastrar (long idUsuario, String login, String senha, String tipo) {
 
-        Usuario user = new Usuario(idUsuario, login, senha, tipo, this); 
+
+        Usuario user = new Usuario(idUsuario, login, senha, tipo, this);
 
         usuarios.add(user);
 
@@ -34,11 +36,12 @@ public class GestorMaster extends Pessoa {
     public void editar (long idOriginal, long idUsuario, String login, String senha, String tipo) {
 
         boolean usuarioEditado = false;
-        
+
         for (Usuario user : usuarios) {
-            
+
             if (user.getIdUsuario() == idOriginal) {
-                
+
+
                 user.setIdUsuario(idUsuario, this);
                 user.setLogin(login, this);
                 user.setSenha(senha, this);
@@ -48,10 +51,8 @@ public class GestorMaster extends Pessoa {
                 break;
             }
         }
-        
-        
-       if (usuarioEditado == false) {
-           
+
+        if (usuarioEditado == false) {
             throw new RegraNegocioException("Usuário não encontrado.");
         }
     }
@@ -61,64 +62,49 @@ public class GestorMaster extends Pessoa {
         boolean usuarioRemovido = false;
 
         for (Usuario user : usuarios) {
-            
+
             if (user.getIdUsuario() == usuario.getIdUsuario()) {
-                
-                usuarios.remove(user);   
+
+                usuarios.remove(user);
                 usuarioRemovido = true;
                 break;
             }
         }
 
         if (usuarioRemovido == false) {
-           
             throw new RegraNegocioException("Usuário não encontrado.");
         }
     }
 
     public ArrayList<Long> listar () {
-
         ArrayList<Long> IDs = new ArrayList<>();
-
         for (Usuario user : usuarios) {
-            
             IDs.add(user.getIdUsuario());
         }
-
         return IDs;
     }
 
     public boolean validar (Usuario usuario) {
-
         boolean usuarioEncontrado = false;
-
         for (Usuario user : usuarios) {
-            
             if (user.getIdUsuario() == usuario.getIdUsuario()) {
-                  
                 usuarioEncontrado = true;
                 break;
             }
         }
-
         if (usuarioEncontrado == false) {
-           
             throw new RegraNegocioException("Usuário não encontrado.");
         }
-
         return usuarioEncontrado;
-    }  
-
-    public ArrayList<String> gerarRelatorio () {
-
-        ArrayList<String> relatos = new ArrayList<>();
-
-        for (Usuario user : usuarios) {
-            
-            relatos.add(String.format("ID: %s Login: %s Senha: %s Tipo: %s", user.getIdUsuario(), user.getLogin(), user.getSenha(), user.getTipo()));
-        }
-
-        return relatos;
     }
 
+    public ArrayList<String> gerarRelatorio () {
+        ArrayList<String> relatos = new ArrayList<>();
+        for (Usuario user : usuarios) {
+
+            relatos.add(String.format("ID: %s Login: %s Senha: %s Tipo: %s | Nome: %s",
+                    user.getIdUsuario(), user.getLogin(), user.getSenha(), user.getTipo(), user.getNome()));
+        }
+        return relatos;
+    }
 }

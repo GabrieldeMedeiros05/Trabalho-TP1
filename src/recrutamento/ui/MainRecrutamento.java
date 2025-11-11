@@ -1,13 +1,13 @@
 /**
-package recrutamento.ui;
+ package recrutamento.ui;
 
-import javax.swing.SwingUtilities;
+ import javax.swing.SwingUtilities;
 
-public class MainRecrutamento {
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new TelaMenuRecrutamento().setVisible(true));
-    }
-}
+ public class MainRecrutamento {
+ public static void main(String[] args) {
+ SwingUtilities.invokeLater(() -> new TelaMenuRecrutamento().setVisible(true));
+ }
+ }
  */
 
 package recrutamento.ui;
@@ -118,4 +118,3 @@ public class MainRecrutamento {
         System.out.println("\n==== FIM DO TESTE ====");
     }
 }
-
