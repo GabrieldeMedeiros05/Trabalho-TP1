@@ -2,7 +2,7 @@ package Financeiro;
 
 import java.util.ArrayList;
 
-import pessoas.Pessoa;
+import Seguranca.dominio.Pessoa;
 
 public class Financeiro {
     Vinculo vinculo;
