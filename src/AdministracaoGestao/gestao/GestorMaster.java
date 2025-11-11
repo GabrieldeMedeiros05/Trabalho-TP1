@@ -3,10 +3,8 @@ package AdministracaoGestao.gestao;
 import java.util.ArrayList;
 import Seguranca.dominio.Pessoa;
 import Seguranca.dominio.Usuario;
-import Candidatura.excecoes.RegraNegocioException; // Exceção usada na lógica
+import Candidatura.excecoes.RegraNegocioException;
 
-// NOTE: Você precisará garantir que 'recrutamento.excecoes.AutorizacaoException'
-// e o 'GestorMaster' sejam resolvidos no seu ambiente.
 
 public class GestorMaster extends Pessoa {
 
@@ -14,7 +12,7 @@ public class GestorMaster extends Pessoa {
     private String senhaMaster;
     private ArrayList<Usuario> usuarios = new ArrayList<>(); // Armazenamento interno de usuários
 
-    // O construtor é package-private no seu código original
+
     GestorMaster (String nome, String cpf, String status, String departamento, String loginMaster, String senhaMaster) {
 
         super(nome,cpf,status,departamento);
@@ -27,7 +25,7 @@ public class GestorMaster extends Pessoa {
 
     public Usuario cadastrar (long idUsuario, String login, String senha, String tipo) {
 
-        // CRÍTICO: Esta chamada exige o construtor que aceita o GestorMaster!
+
         Usuario user = new Usuario(idUsuario, login, senha, tipo, this);
 
         usuarios.add(user);
@@ -43,7 +41,7 @@ public class GestorMaster extends Pessoa {
 
             if (user.getIdUsuario() == idOriginal) {
 
-                // CRÍTICO: Estas chamadas exigem os setters que aceitam o GestorMaster!
+
                 user.setIdUsuario(idUsuario, this);
                 user.setLogin(login, this);
                 user.setSenha(senha, this);
@@ -103,7 +101,7 @@ public class GestorMaster extends Pessoa {
     public ArrayList<String> gerarRelatorio () {
         ArrayList<String> relatos = new ArrayList<>();
         for (Usuario user : usuarios) {
-            // NOTE: Acessando o getter de Pessoa para o nome
+
             relatos.add(String.format("ID: %s Login: %s Senha: %s Tipo: %s | Nome: %s",
                     user.getIdUsuario(), user.getLogin(), user.getSenha(), user.getTipo(), user.getNome()));
         }
