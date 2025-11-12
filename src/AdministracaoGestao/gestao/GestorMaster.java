@@ -14,8 +14,7 @@ public class GestorMaster extends Pessoa {
 
 
     GestorMaster (String nome, String cpf, String status, String departamento, String loginMaster, String senhaMaster) {
-
-        super(nome,cpf,status,departamento);
+        super(99L, nome, "Física",cpf, "00/00/0000", "pessoal@gmail.com","55 5555 5555","Casa Amarela");
 
         this.loginMaster = loginMaster;
 

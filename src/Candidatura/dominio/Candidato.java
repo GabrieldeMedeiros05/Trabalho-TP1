@@ -9,10 +9,14 @@ public class Candidato extends Pessoa {
     private String linkCurriculo;
     private String perfilProfissional;
     private String curriculo;
+    private String status;
+    private String departamento;
 
     // CONSTRUTOR DE CRIAÇÃO
     public Candidato(String cpf, String nome, String email) {
-        super(nome, cpf, "ATIVO", "CANDIDATURA");
+        super(nome, "Física", cpf);
+        this.status = "ATIVO";
+        this.departamento = "CANDIDATURA";
         this.email = email;
     }
 
@@ -21,12 +25,14 @@ public class Candidato extends Pessoa {
                      String email, String telefone, String linkCurriculo,
                      String perfilProfissional, String curriculo) {
 
-        super(nome, cpf_cnpj, status, departamento);
+        super(nome, "Física", cpf_cnpj);
         this.email = email;
         this.telefone = telefone;
         this.linkCurriculo = linkCurriculo;
         this.perfilProfissional = perfilProfissional;
         this.curriculo = curriculo;
+        this.status = status;
+        this.departamento = departamento;
     }
 
     // O método é herdado publicamente de Pessoa.
@@ -48,9 +54,12 @@ public class Candidato extends Pessoa {
     public String getCurriculo() { return curriculo; }
     public void setCurriculo(String curriculo) { this.curriculo = curriculo; }
 
+    public String getStatus() {return status;}
+    public void setStatus(String status) {this.status = status;}
+
     @Override
     public String toString() {
         // Agora getCpf_cnpj() e getNome() são resolvidos corretamente via herança.
-        return getCpf_cnpj() + " | " + getNome() + " | " + email;
+        return getNumeroRegistro() + " | " + getNome() + " | " + email;
     }
 }

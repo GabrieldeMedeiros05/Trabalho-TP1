@@ -78,7 +78,7 @@ public class UsuarioRepositoryCsv implements UsuarioRepository {
     public Optional<Usuario> buscarPorCpfPessoa(String cpf) {
         return listarTodos()
                 .stream()
-                .filter(u -> u.getCpf_cnpj() != null && u.getCpf_cnpj().equals(cpf))
+                .filter(u -> u.getNumeroRegistro() != null && u.getNumeroRegistro().equals(cpf))
                 .findFirst();
     }
 
@@ -148,7 +148,7 @@ public class UsuarioRepositoryCsv implements UsuarioRepository {
                         u.getTipo(),
                         // Dados de Pessoa (com tratamento de nulo)
                         u.getNome() != null ? u.getNome() : "",
-                        u.getCpf_cnpj() != null ? u.getCpf_cnpj() : "",
+                        u.getNumeroRegistro() != null ? u.getNumeroRegistro() : "",
                         u.getStatus() != null ? u.getStatus() : "",
                         u.getDepartamento() != null ? u.getDepartamento() : ""
                 )));

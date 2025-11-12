@@ -37,7 +37,7 @@ public class CandidatoRepositoryCsv implements CandidatoRepository {
     @Override
     public Candidato salvar(Candidato candidato) {
         List<Candidato> todos = listarTodos();
-        todos.removeIf(x -> x.getCpf_cnpj().equals(candidato.getCpf_cnpj()));
+        todos.removeIf(x -> x.getNumeroRegistro().equals(candidato.getNumeroRegistro()));
         todos.add(candidato);
         escreverTodos(todos);
         return candidato;
@@ -47,7 +47,7 @@ public class CandidatoRepositoryCsv implements CandidatoRepository {
     public Optional<Candidato> buscarPorCpf(String cpf) {
         return listarTodos()
                 .stream()
-                .filter(c -> c.getCpf_cnpj().equals(cpf))
+                .filter(c -> c.getNumeroRegistro().equals(cpf))
                 .findFirst();
     }
 
@@ -68,7 +68,7 @@ public class CandidatoRepositoryCsv implements CandidatoRepository {
     @Override
     public boolean deletarPorCpf(String cpf) {
         List<Candidato> todos = listarTodos();
-        boolean foiRemovido = todos.removeIf(c -> c.getCpf_cnpj().equals(cpf));
+        boolean foiRemovido = todos.removeIf(c -> c.getNumeroRegistro().equals(cpf));
         if (foiRemovido) {
             escreverTodos(todos);
         }
@@ -117,7 +117,7 @@ public class CandidatoRepositoryCsv implements CandidatoRepository {
             bw.newLine();
             for (Candidato c : todos) {
                 bw.write(String.join(";", List.of(
-                        c.getCpf_cnpj(),
+                        c.getNumeroRegistro(),
                         c.getNome(),
                         c.getEmail(),
                         c.getTelefone() != null ? c.getTelefone() : "",

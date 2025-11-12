@@ -74,8 +74,8 @@ public class UsuarioService {
         }
 
         // Regra de Negócio 2: CPF/CNPJ deve ser único
-        if (usuario.getCpf_cnpj() != null && repository.buscarPorCpfPessoa(usuario.getCpf_cnpj()).isPresent()) {
-            throw new RegraNegocioException("O CPF/CNPJ '" + usuario.getCpf_cnpj() + "' já está cadastrado.");
+        if (usuario.getNumeroRegistro() != null && repository.buscarPorCpfPessoa(usuario.getNumeroRegistro()).isPresent()) {
+            throw new RegraNegocioException("O CPF/CNPJ '" + usuario.getNumeroRegistro() + "' já está cadastrado.");
         }
 
         return repository.salvar(usuario);

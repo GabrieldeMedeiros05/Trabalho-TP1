@@ -13,6 +13,8 @@ public class Usuario extends Pessoa {
     private String login;
     private String senha;
     private String tipo;
+    private String status;
+    private String departamento;
 
     private ArrayList<Usuario> usuarios = new ArrayList<>(); // Armazenamento interno (original)
 
@@ -21,7 +23,7 @@ public class Usuario extends Pessoa {
                     String nome, String cpf_cnpj, String status, String departamento) {
 
         // Chama o construtor de 4 argumentos de Pessoa
-        super(nome, cpf_cnpj, status, departamento);
+        super(nome, "Física", cpf_cnpj, "00/00/0000", "oi@gmail.com", "555555", "Casa Amarela");
         this.idUsuario = idUsuario;
         this.login = login;
         this.senha = senha;
@@ -56,15 +58,17 @@ public class Usuario extends Pessoa {
     public String getLogin () { return this.login; }
     public String getSenha () { return this.senha; }
     public String getTipo () { return this.tipo; }
+    public String getStatus () { return this.status; }
+    public String getDepartamento() {return departamento;}
 
     // --- SETTERS SIMPLIFICADOS (NECESSÁRIOS PARA O REPOSITÓRIO CSV) ---
     public void setIdUsuario (long idUsuario) { this.idUsuario = idUsuario; }
     public void setLogin (String login) { this.login = login; }
     public void setSenha (String senha) { this.senha = senha; }
     public void setTipo (String tipo) { this.tipo = tipo; }
-
-
-    // --- SETTERS COM GESTOR MASTER (ORIGINAIS) ---
+    public void setStatus (String status) { this.status = status; }
+    public void setDepartamento(String departamento) {this.departamento = departamento;}
+// --- SETTERS COM GESTOR MASTER (ORIGINAIS) ---
 
     public void setIdUsuario (long idUsuario, GestorMaster gestor) {
 

@@ -5,67 +5,53 @@ import java.util.ArrayList;
 
 public class Pessoa {
 
+    private long id;
     private String nome;
-    private String cpf_cnpj;
-    private String status;
-    private String departamento;
+    private String personalidade;
+    private String numeroRegistro;
+    private String dataNascimento;
+    private String emailPessoal;
+    private String telefonePessoal;
+    private String enderecoCompleto;
 
     private ArrayList<Pessoa> pessoas = new ArrayList<>();
 
     // Adicionar um construtor
     public Pessoa() {}
 
-    public Pessoa (String nome, String cpf_cnpj, String status, String departamento) {
-
+    public Pessoa (long id, String nome, String personalidade, String numeroRegistro, String dataNascimento, String emailPessoal, String telefonePessoal, String enderecoCompleto) {
+        this.id = id;
         this.nome = nome;
-        this.cpf_cnpj = cpf_cnpj;
-        this.status = status;
-        this.departamento = departamento;
+        this.personalidade = personalidade;
+        this.numeroRegistro = numeroRegistro;
+        this.dataNascimento = dataNascimento;
+        this.emailPessoal = emailPessoal;
+        this.telefonePessoal = telefonePessoal;
+        this.enderecoCompleto = enderecoCompleto;
+    }
+
+    public Pessoa (String nome, String personalidade, String numeroRegistro) {
+        this.nome = nome;
+        this.personalidade = personalidade;
+        this.numeroRegistro = numeroRegistro;
     }
 
     // Adicionar setters (pois os atributos são privados)
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setCpf_cnpj(String cpf_cnpj) {
-        this.cpf_cnpj = cpf_cnpj;
-    }
-
-    // Adicionar getter para nome
-    public String getNome() {
-        return nome;
-    }
-
-    public String getCpf_cnpj() {
-        return cpf_cnpj;
-    }
-
-    public String getStatus () {
-
-        return this.status;
-    }
-    // Em Seguranca.dominio.Pessoa.java
-
-    // Adicionar getter para departamento (CRÍTICO PARA O REPOSITÓRIO CSV)
-    public String getDepartamento () { // Deve ser público
-        return this.departamento;
-    }
-
-// ... (resto dos getters e setters)
+    public void setId(long id) {this.id = id;}
+    public void setNome(String nome) {this.nome = nome;}
+    public void setPersonalidade(String personalidade) {this.personalidade = personalidade;}
+    public void setDataNascimento(String dataNascimento) {this.dataNascimento = dataNascimento;}
+    public void setEmailPessoal(String emailPessoal) {this.emailPessoal = emailPessoal;}
+    public void setTelefonePessoal(String telefonePessoal) {this.telefonePessoal = telefonePessoal;}
+    public void setEnderecoCompleto(String enderecoCompleto) {this.enderecoCompleto = enderecoCompleto;}
+    // Adicionar getter
+    public long getId() {return id;}
+    public String getNome() {return nome;}
+    public String getNumeroRegistro() {return numeroRegistro;}
+    public String getDataNascimento() {return dataNascimento;}
+    public String getEmailPessoal() {return emailPessoal;}
+    public String getTelefonePessoal() {return telefonePessoal;}
+    public String getEnderecoCompleto() {return enderecoCompleto;}
 
 
-    public Pessoa pesquisar (String nome) {
-
-        for (Pessoa pessoa : pessoas) {
-            if (nome.equals(pessoa.nome)) {
-
-                return pessoa;
-            }
-        }
-
-        return null;
-    }
-
-    // ... restante da classe
 }
