@@ -7,9 +7,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class Janela extends JFrame implements ActionListener {
+public class CadastroUsuario extends JFrame implements ActionListener {
 
-    public Janela() {
+    public CadastroUsuario() {
         initComponets();
     }
 
@@ -170,7 +170,7 @@ public class Janela extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
 
-        new Janela().setVisible(true);
+        new CadastroUsuario().setVisible(true);
         
     }
 
