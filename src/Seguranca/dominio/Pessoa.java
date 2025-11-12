@@ -9,6 +9,13 @@ public class Pessoa {
     private String cpf_cnpj;
     private String status;
     private String departamento;
+    // Editado para conter informações relacionadas a pessoa
+    private long id;
+    private String fisicaOuJuridica;
+    private String dataNascimento;
+    private String emailPessoal;
+    private String telefonePessoal;
+    private String enderecoCompleto;
 
     private ArrayList<Pessoa> pessoas = new ArrayList<>();
 
@@ -21,6 +28,17 @@ public class Pessoa {
         this.cpf_cnpj = cpf_cnpj;
         this.status = status;
         this.departamento = departamento;
+    }
+
+    public Pessoa (String nome, String fisicaOuJuridica, String cpf_cnpj, String dataNascimento, String emailPessoal, String telefonePessoal, String enderecoCompleto) {
+
+        this.nome = nome;
+        this.cpf_cnpj = cpf_cnpj;
+        this.fisicaOuJuridica = fisicaOuJuridica;
+        this.dataNascimento = dataNascimento;
+        this.emailPessoal = emailPessoal;
+        this.telefonePessoal = telefonePessoal;
+        this.enderecoCompleto = enderecoCompleto;
     }
 
     // Adicionar setters (pois os atributos são privados)

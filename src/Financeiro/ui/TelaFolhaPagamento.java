@@ -7,8 +7,12 @@ import Candidatura.ui.CandidaturaModuleConfig;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import Financeiro.FuncionarioTableModel;
+import Seguranca.dominio.Funcionario;
 import projeto.Constantes;
 
 public class TelaFolhaPagamento extends JFrame {
@@ -26,10 +30,14 @@ public class TelaFolhaPagamento extends JFrame {
         JPanel painelBusca = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
 
         // --- 2. Tabela (CENTER) ---
-        String[] colunas = {"CPF", "Nome", "Email", "Telefone", "Currículo"};
-        model = new DefaultTableModel(colunas, 0) {
-            @Override public boolean isCellEditable(int row, int col) { return false; }
-        };
+
+        // Dados da tabela
+        List<Funcionario> funcionarios = new ArrayList<>();
+        funcionarios.add(new Funcionario("Francisco da Luz", "Física", "014.873.692-04;1999-01-29", "dataNascimento", "emailPessoal", "telefonePessoal", "enderecoCompleto", "matricula", "cargo", "departamento", "dataContratacao", 1000f, "status", "tipoContrato", 44, "emailCorporativo", "telefoneFixo", "telefoneResidencial", "telefoneCelularCorporativo"));
+        funcionarios.add(new Funcionario("Theodoro da Paz", "Física", "420.635.971-70;1979-06-29", "dataNascimento", "emailPessoal", "telefonePessoal", "enderecoCompleto", "matricula", "cargo", "departamento", "dataContratacao", 1000f, "status", "tipoContrato", 44, "emailCorporativo", "telefoneFixo", "telefoneResidencial", "telefoneCelularCorporativo"));
+        funcionarios.add(new Funcionario("Valentim Vieira", "Física", "893.725.140-04", "dataNascimento", "emailPessoal", "telefonePessoal", "enderecoCompleto", "matricula", "cargo", "departamento", "dataContratacao", 1000f, "status", "tipoContrato", 44, "emailCorporativo", "telefoneFixo", "telefoneResidencial", "telefoneCelularCorporativo"));
+        FuncionarioTableModel model = new FuncionarioTableModel(funcionarios);
+
         tabela = new JTable(model);
         tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         add(new JScrollPane(tabela), BorderLayout.CENTER);
