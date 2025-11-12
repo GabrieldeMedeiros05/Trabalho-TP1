@@ -1,13 +1,18 @@
 package main;
 
-import javax.swing.SwingUtilities;
+import javax.swing.*;
+
+import Financeiro.ui.TelaFinanceiro;
+import Financeiro.ui.TelaFolhaPagamento;
 import main.ui.TelaLogin;
 
 public class Main {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            TelaLogin telaLogin = new TelaLogin();
-            telaLogin.setVisible(true);
-        });
+        JFrame tela = new TelaFolhaPagamento();
+        tela.setVisible(true);
+//        SwingUtilities.invokeLater(() -> {
+//            TelaLogin telaLogin = new TelaLogin();
+//            telaLogin.setVisible(true);
+//        });
     }
 }

@@ -3,6 +3,7 @@ package Financeiro.ui;
 import Candidatura.dominio.Candidato;
 import Candidatura.servico.CandidaturaService;
 import Candidatura.ui.*;
+import projeto.Constantes;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -76,8 +77,8 @@ public class TelaFinanceiro extends JFrame {
         JButton btnGerarFolha = new JButton("Gerar Folha");
 
         JPanel footer = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        footer.add(btnCalcularSalario);
         footer.add(btnGerarFolha);
+        footer.add(btnCalcularSalario);
         footer.add(btnFechar);
         add(footer, BorderLayout.SOUTH);
 
@@ -89,13 +90,19 @@ public class TelaFinanceiro extends JFrame {
             carregar(false);
         });
         btnFechar.addActionListener(e -> dispose());
-        btnGerarFolha.addActionListener(e -> deletarCandidato());
+        btnGerarFolha.addActionListener(e -> abrirFolhaPagamento());
 
         pack();
-        setSize(900, 500);
+        setSize(Constantes.ALTURA_PADRAO_PAGINA, Constantes.LARGURA_PADRAO_PAGINA);
         setLocationRelativeTo(null);
 
         carregar(false);
+    }
+
+    private void abrirFolhaPagamento() {
+        TelaFolhaPagamento tela = new TelaFolhaPagamento();
+        tela.setVisible(true);
+        this.setVisible(false);
     }
 
     private void carregar(boolean usarFiltro) {
