@@ -8,9 +8,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class Administracao2 extends JFrame implements ActionListener {
+public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListener {
 
-    public Administracao2() {
+    public AdministracaoGestaoDeUsuario() {
         initComponets();
     }
 
@@ -175,37 +175,37 @@ public class Administracao2 extends JFrame implements ActionListener {
 
         if (e.getSource()==botao) {
             
-            Janela janela = new Janela();
+            CadastroUsuario janela = new CadastroUsuario();
         }
 
         if (e.getSource()==botao1) {
             
-            Janela janela = new Janela();
+            CadastroUsuario cadastro = new CadastroUsuario();
         }
 
         if (e.getSource()==botao2) {
             
-            Janela janela = new Janela();
+            CadastroUsuario janela = new CadastroUsuario();
         }
 
         if (e.getSource()==botao3) {
             
-            Janela janela = new Janela();
+            CadastroUsuario janela = new CadastroUsuario();
         }
 
         if (e.getSource()==botao4) {
             
-            Janela janela = new Janela();
+            CadastroUsuario janela = new CadastroUsuario();
         }
 
         if (e.getSource()==botao5) {
             
-            Janela janela = new Janela();
+            CadastroUsuario janela = new CadastroUsuario();
         }
 
         if (e.getSource()==botao6) {
             
-            Janela janela = new Janela();
+            CadastroUsuario janela = new CadastroUsuario();
         }
 
 
@@ -213,7 +213,7 @@ public class Administracao2 extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
 
-        new Administracao2().setVisible(true);
+        new AdministracaoGestaoDeUsuario().setVisible(true);
         
     }
 
