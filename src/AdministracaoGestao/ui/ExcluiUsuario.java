@@ -4,14 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class CadastroUsuario extends JFrame implements ActionListener {
+public class ExcluiUsuario extends JFrame implements ActionListener {
 
-    public CadastroUsuario() {
+    public ExcluiUsuario() {
         initComponets();
     }
 
     public void initComponets(){
-        setTitle("Cadastro de Usuário");
+        setTitle("Excui Usuário");
         setSize(1280,720);
         setLayout(null);
         setVisible(true);
@@ -44,9 +44,9 @@ public class CadastroUsuario extends JFrame implements ActionListener {
         panel.setBackground(new Color(10,20,30));
         panel.setBounds(0,40,1280,100);
 
-        JLabel title = new JLabel("Cadastro de Usuário");
+        JLabel title = new JLabel("Excui Usuário");
         
-        title.setBounds(450,30,800,45);
+        title.setBounds(500,30,800,45);
         title.setForeground(new Color(240,246,252));
         title.setFont(new Font("M+ 2c black", Font.PLAIN, 40));
 
@@ -57,8 +57,8 @@ public class CadastroUsuario extends JFrame implements ActionListener {
 
     public JPanel midPanel(){
 
-        JPanel panel1 = new JPanel(new GridLayout(4, 1, 0, 20));
-        panel1.setBounds(80, 180, 150, 320);
+        JPanel panel1 = new JPanel(new GridLayout(2, 1, 0, 70));
+        panel1.setBounds(80, 215, 150, 200);
         panel1.setBackground(new Color(10,20,30));
 
         JLabel label1 = new JLabel("Nome");
@@ -69,18 +69,18 @@ public class CadastroUsuario extends JFrame implements ActionListener {
         label2.setForeground(new Color(240,246,252));
         label2.setFont(new Font("Roboto", Font.PLAIN, 20));
 
-        JLabel label3 = new JLabel("Status");
-        label3.setForeground(new Color(240,246,252));
-        label3.setFont(new Font("Roboto", Font.PLAIN, 20));
+        // JLabel label3 = new JLabel("Status");
+        // label3.setForeground(new Color(240,246,252));
+        // label3.setFont(new Font(null, Font.PLAIN, 20));
 
-        JLabel label4 = new JLabel("Departamento");
-        label4.setForeground(new Color(240,246,252));
-        label4.setFont(new Font("Roboto", Font.PLAIN, 20));
+        // JLabel label4 = new JLabel("Departamento");
+        // label4.setForeground(new Color(240,246,252));
+        // label4.setFont(new Font(null, Font.PLAIN, 20));
 
         panel1.add(label1);
         panel1.add(label2);
-        panel1.add(label3);
-        panel1.add(label4);
+        // panel1.add(label3);
+        // panel1.add(label4);
 
         return panel1;
     }
@@ -92,8 +92,8 @@ public class CadastroUsuario extends JFrame implements ActionListener {
 
     public JPanel midPanel2(){
 
-        JPanel panel2 = new JPanel(new GridLayout(4, 1, 0, 20));
-        panel2.setBounds(270, 180, 860, 320);
+        JPanel panel2 = new JPanel(new GridLayout(2, 1, 0, 70));
+        panel2.setBounds(250, 215, 860, 200);
         panel2.setBackground(new Color(10,20,30));
         
 
@@ -111,24 +111,24 @@ public class CadastroUsuario extends JFrame implements ActionListener {
         text2.setFont(new Font(null, Font.PLAIN, 20));
         text2.setText("XXX.XXX.XXX-XX");
 
-        text3 = new JTextField();
-        text3.setCaretColor(Color.green);
-        text3.setBackground(new Color(50,50,50));
-        text3.setForeground(new Color(240,246,252));
-        text3.setFont(new Font(null, Font.PLAIN, 20));
-        text3.setText("Ativo");
+        // text3 = new JTextField();
+        // text3.setCaretColor(Color.green);
+        // text3.setBackground(new Color(50,50,50));
+        // text3.setForeground(new Color(240,246,252));
+        // text3.setFont(new Font(null, Font.PLAIN, 20));
+        // text3.setText("Ativo");
 
-        text4 = new JTextField();
-        text4.setCaretColor(Color.green);
-        text4.setBackground(new Color(50,50,50));
-        text4.setForeground(new Color(240,246,252));
-        text4.setFont(new Font(null, Font.PLAIN, 20));
-        text4.setText("Recrutamento");
+        // text4 = new JTextField();
+        // text4.setCaretColor(Color.green);
+        // text4.setBackground(new Color(50,50,50));
+        // text4.setForeground(new Color(240,246,252));
+        // text4.setFont(new Font(null, Font.PLAIN, 20));
+        // text4.setText("Recrutamento");
 
         panel2.add(text1);
         panel2.add(text2);
-        panel2.add(text3);
-        panel2.add(text4);
+        // panel2.add(text3);
+        // panel2.add(text4);
     
         return panel2;
     }
@@ -139,9 +139,9 @@ public class CadastroUsuario extends JFrame implements ActionListener {
 
         JPanel panel = new JPanel(null);
         panel.setBackground(new Color(10,20,30));
-        panel.setBounds(300,540,1280,120);
+        panel.setBounds(300,520,1280,120);
 
-        botao = new JButton("Cadastrar");
+        botao = new JButton("Excluir");
         
         botao.setBounds(250,30,200,45);
         botao.setBackground(new Color(21,27,35));
@@ -168,7 +168,7 @@ public class CadastroUsuario extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
 
-        new CadastroUsuario().setVisible(true);
+        new ExcluiUsuario().setVisible(true);
         
     }
 
