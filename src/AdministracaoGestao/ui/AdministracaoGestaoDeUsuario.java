@@ -1,12 +1,9 @@
 // package AdministracaoGestao.ui;
 
-import javax.swing.*;
 import java.awt.*;
-import javax.swing.border.Border;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import javax.swing.*;
 
 public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListener {
 
@@ -44,7 +41,7 @@ public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListen
 
         JPanel panel = new JPanel(null);
         panel.setBackground(new Color(10,20,30));
-        panel.setBounds(0,0,1280,120);
+        panel.setBounds(20,40,1280,100);
 
         JLabel title = new JLabel("Administração/Gestão de Usuário");
         
@@ -68,9 +65,9 @@ public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListen
 
         JPanel panel = new JPanel();
 
-        panel.setLayout(new GridLayout(2,3,150,250));
+        panel.setLayout(new GridLayout(2,3,150,110));
 
-        panel.setBounds(90, 150, 1100, 320);
+        panel.setBounds(100, 220, 1100, 220);
         panel.setBackground(new Color(10,20,30));
 
         JPanel panel1 = new JPanel(new GridLayout(1, 1));
@@ -80,6 +77,7 @@ public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListen
         botao1.setForeground(new Color(240,246,252));
         botao1.setFocusable(false);
         botao1.addActionListener(this);
+        botao1.setFont(new Font("Roboto", Font.PLAIN, 17));
 
         panel1.add(botao1);
 
@@ -93,6 +91,7 @@ public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListen
         botao2.setForeground(new Color(240,246,252));
         botao2.setFocusable(false);
         botao2.addActionListener(this);
+        botao2.setFont(new Font("Roboto", Font.PLAIN, 17));
 
         panel2.add(botao2);
     
@@ -105,6 +104,7 @@ public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListen
         botao3.setForeground(new Color(240,246,252));
         botao3.setFocusable(false);
         botao3.addActionListener(this);
+        botao3.setFont(new Font("Roboto", Font.PLAIN, 17));
 
         panel3.add(botao3);
     
@@ -117,6 +117,7 @@ public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListen
         botao4.setForeground(new Color(240,246,252));
         botao4.setFocusable(false);
         botao4.addActionListener(this);
+        botao4.setFont(new Font("Roboto", Font.PLAIN, 17));
 
         panel4.add(botao4);
     
@@ -129,6 +130,7 @@ public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListen
         botao5.setForeground(new Color(240,246,252));
         botao5.setFocusable(false);
         botao5.addActionListener(this);
+        botao5.setFont(new Font("Roboto", Font.PLAIN, 17));
         
         panel5.add(botao5);
     
@@ -141,6 +143,7 @@ public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListen
         botao6.setForeground(new Color(240,246,252));
         botao6.setFocusable(false);
         botao6.addActionListener(this);
+        botao6.setFont(new Font("Roboto", Font.PLAIN, 17));
 
         panel6.add(botao6);
     
@@ -155,7 +158,7 @@ public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListen
 
         JPanel panel = new JPanel(null);
         panel.setBackground(new Color(10,20,30));
-        panel.setBounds(300,550,1280,120);
+        panel.setBounds(300,540,1280,120);
 
         botao = new JButton("Gerar Relatório");
         
@@ -164,6 +167,7 @@ public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListen
         botao.setForeground(new Color(240,246,252));
         botao.setFocusable(false);
         botao.addActionListener(this);
+        botao.setFont(new Font("Roboto", Font.PLAIN, 17));
 
         panel.add(botao);
 
@@ -190,7 +194,7 @@ public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListen
 
         if (e.getSource()==botao3) {
             
-            CadastroUsuario janela = new CadastroUsuario();
+            ExcluiUsuario janela = new ExcluiUsuario();
         }
 
         if (e.getSource()==botao4) {
