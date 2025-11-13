@@ -14,8 +14,6 @@ import Seguranca.dominio.Funcionario;
 import utils.Constantes;
 
 public class TelaFolhaPagamento extends JFrame {
-    private final CandidaturaService service = CandidaturaModuleConfig.candidaturaService();
-
     private JTable tabela;
     private DefaultTableModel model;
 

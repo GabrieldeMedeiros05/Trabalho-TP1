@@ -1,6 +1,5 @@
 package Financeiro.ui;
 
-import Candidatura.dominio.Candidato;
 import Candidatura.servico.CandidaturaService;
 import Candidatura.ui.*;
 import Financeiro.FolhaPagamentoTableModel;
@@ -9,13 +8,10 @@ import Seguranca.dominio.Funcionario;
 import utils.Constantes;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class TelaFinanceiro extends JFrame {
-    private final CandidaturaService service = CandidaturaModuleConfig.candidaturaService();
 
     private JTable tabela;
     private JTextField txtFiltroCpf;
@@ -32,22 +28,6 @@ public class TelaFinanceiro extends JFrame {
         setLayout(new BorderLayout(8, 8));
 
         // NORTE
-//        JPanel botoesEsquerda = new JPanel();
-//        JPanel footer = new JPanel(new BorderLayout());
-//        footer.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
-//
-//        JButton btnFechar = new JButton("Fechar");
-//        JButton btnPdf = new JButton("PDF");
-//        JButton btnCsv = new JButton("CSV");
-//
-//        botoesEsquerda.add(new JLabel("Exportar:"));
-//        botoesEsquerda.add(btnPdf);
-//        botoesEsquerda.add(btnCsv);
-//
-//
-//        footer.add(botoesEsquerda, BorderLayout.WEST);
-//        footer.add(btnFechar, BorderLayout.EAST);
-//        add(footer, BorderLayout.SOUTH);
         txtFiltroCpf = new JTextField(9);
         txtFiltroNome = new JTextField(15);
         txtFiltroCargo = new JTextField(9);
@@ -92,14 +72,25 @@ public class TelaFinanceiro extends JFrame {
         add(new JScrollPane(tabela), BorderLayout.CENTER);
 
         // SUL
+        botoesEsquerda = new JPanel();
+        botoesDireita = new JPanel();
+        painelBusca = new JPanel(new BorderLayout());
+        painelBusca.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+
         JButton btnFechar = new JButton("Fechar");
         JButton btnCalcularSalario = new JButton("Calcular Salários");
         JButton btnGerarFolha = new JButton("Gerar Folha");
 
-        JPanel footer = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        footer.add(btnGerarFolha);
-        footer.add(btnCalcularSalario);
-        footer.add(btnFechar);
+        JPanel footer = new JPanel(new BorderLayout());
+        footer.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+
+        botoesEsquerda.add(btnGerarFolha);
+        botoesEsquerda.add(btnCalcularSalario);
+        botoesDireita.add(btnFechar);
+
+        footer.add(botoesEsquerda, BorderLayout.WEST);
+        footer.add(botoesDireita, BorderLayout.EAST);
+
         add(footer, BorderLayout.SOUTH);
 
         // Listeners
