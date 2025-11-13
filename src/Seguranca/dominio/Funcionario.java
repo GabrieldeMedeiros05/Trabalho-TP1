@@ -1,5 +1,7 @@
 package Seguranca.dominio;
 
+import utils.Constantes;
+
 public class Funcionario extends Pessoa {
     private long idPessoa;
     private String matricula;
@@ -13,9 +15,14 @@ public class Funcionario extends Pessoa {
     private String emailCorporativo;
     private String telefoneRamal;
     private String telefoneCelularCorporativo;
+    private boolean valeTransporte;
+    private boolean valeAlimentacao;
+    private boolean isentoImpostos;
+    private float imposto = 0f;
 
 
     public Funcionario(
+            long idPessoa,
             String nome,
             String fisicaOuJuridica,
             String cpf_cnpj,
@@ -35,7 +42,38 @@ public class Funcionario extends Pessoa {
             String telefoneRamal,
             String telefoneCelularCorporativo
     ) {
-        super(nome, fisicaOuJuridica, cpf_cnpj, dataNascimento, emailPessoal, telefonePessoal, enderecoCompleto);
+        super(idPessoa, nome, fisicaOuJuridica, cpf_cnpj, dataNascimento, emailPessoal, telefonePessoal, enderecoCompleto);
+        this.matricula = matricula;
+        this.cargo = cargo;
+        this.departamento = departamento;
+        this.dataContratacao = dataContratacao;
+        this.salarioBase = salarioBase;
+        this.status = status;
+        this.tipoContrato = tipoContrato;
+        this.cargaHoraria = cargaHoraria;
+        this.emailCorporativo = emailCorporativo;
+        this.telefoneRamal = telefoneRamal;
+        this.telefoneCelularCorporativo = telefoneCelularCorporativo;
+    }
+
+    public Funcionario(
+        long idPessoa,
+        String matricula,
+        String cargo,
+        String departamento,
+        String dataContratacao,
+        float salarioBase,
+        String status,
+        String tipoContrato,
+        int cargaHoraria,
+        String emailCorporativo,
+        String telefoneRamal,
+        String telefoneCelularCorporativo,
+        boolean valeTransporte,
+        boolean valeAlimentacao,
+        boolean isentoImpostos
+    ) {
+        this.idPessoa = idPessoa;
         this.matricula = matricula;
         this.cargo = cargo;
         this.departamento = departamento;
@@ -98,6 +136,9 @@ public class Funcionario extends Pessoa {
     }
 
     public String getStatus() {
+        if (this.status.equalsIgnoreCase("pj")) {
+            return "false";
+        }
         return status;
     }
 
@@ -121,16 +162,6 @@ public class Funcionario extends Pessoa {
         this.cargaHoraria = cargaHoraria;
     }
 
-
-
-    public String getTelefoneFixo() {
-        return telefoneFixo;
-    }
-
-    public void setTelefoneFixo(String telefoneFixo) {
-        this.telefoneFixo = telefoneFixo;
-    }
-
     public String getTelefoneRamal() {
         return telefoneRamal;
     }
@@ -145,6 +176,68 @@ public class Funcionario extends Pessoa {
 
     public void setTelefoneCelularCorporativo(String telefoneCelularCorporativo) {
         this.telefoneCelularCorporativo = telefoneCelularCorporativo;
+    }
+
+    public long getIdPessoa() {
+        return idPessoa;
+    }
+
+    public void setIdPessoa(long idPessoa) {
+        this.idPessoa = idPessoa;
+    }
+
+    public boolean isValeTransporte() {
+        return valeTransporte;
+    }
+
+    public void setValeTransporte(boolean valeTransporte) {
+        this.valeTransporte = valeTransporte;
+    }
+
+    public boolean isValeAlimentacao() {
+        return valeAlimentacao;
+    }
+
+    public void setValeAlimentacao(boolean valeAlimentacao) {
+        this.valeAlimentacao = valeAlimentacao;
+    }
+
+    public boolean isIsentoImpostos() {
+        return isentoImpostos;
+    }
+
+    public void setIsentoImpostos(boolean isentoImpostos) {
+        this.isentoImpostos = isentoImpostos;
+    }
+
+    public float calculaSalarioLiquido() {
+        float salarioLiquido = getSalarioBase();
+        if (getStatus().equalsIgnoreCase("pj")) {
+            return salarioLiquido;
+        }
+
+        if ((getTipoContrato().equalsIgnoreCase("clt") || getTipoContrato().equalsIgnoreCase("temporário")) && !isIsentoImpostos() && salarioBase > 2000f) {
+            imposto = salarioLiquido*0.1f;
+            salarioLiquido *= 0.9f;
+        }
+
+        if (isValeTransporte()) {
+            salarioLiquido += Constantes.VALOR_VALE_TRANSPORTE;
+        }
+        if (isValeAlimentacao()) {
+            salarioLiquido += Constantes.VALOR_VALE_ALIMENTACAO;
+        }
+
+        return salarioLiquido;
+    }
+
+    public float getImposto() {
+        return imposto;
+    }
+
+    @Override
+    public String toString() {
+        return idPessoa+", "+matricula+", "+getNome()+", "+cargo+", "+departamento+", "+dataContratacao+", "+salarioBase+", "+status+", "+tipoContrato+", "+cargaHoraria+", "+emailCorporativo+", "+telefoneRamal+", "+telefoneCelularCorporativo;
     }
 
 }

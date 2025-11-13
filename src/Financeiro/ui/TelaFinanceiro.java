@@ -3,7 +3,10 @@ package Financeiro.ui;
 import Candidatura.dominio.Candidato;
 import Candidatura.servico.CandidaturaService;
 import Candidatura.ui.*;
-import projeto.Constantes;
+import Financeiro.FolhaPagamentoTableModel;
+import Financeiro.dados.LeitorFuncionario;
+import Seguranca.dominio.Funcionario;
+import utils.Constantes;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -15,7 +18,6 @@ public class TelaFinanceiro extends JFrame {
     private final CandidaturaService service = CandidaturaModuleConfig.candidaturaService();
 
     private JTable tabela;
-    private DefaultTableModel model;
     private JTextField txtFiltroCpf;
     private JTextField txtFiltroNome;
 
@@ -29,49 +31,67 @@ public class TelaFinanceiro extends JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout(8, 8));
 
-        // --- 1. Painel de Busca (NORTH) ---
-        JPanel painelBusca = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
-
+        // NORTE
+//        JPanel botoesEsquerda = new JPanel();
+//        JPanel footer = new JPanel(new BorderLayout());
+//        footer.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+//
+//        JButton btnFechar = new JButton("Fechar");
+//        JButton btnPdf = new JButton("PDF");
+//        JButton btnCsv = new JButton("CSV");
+//
+//        botoesEsquerda.add(new JLabel("Exportar:"));
+//        botoesEsquerda.add(btnPdf);
+//        botoesEsquerda.add(btnCsv);
+//
+//
+//        footer.add(botoesEsquerda, BorderLayout.WEST);
+//        footer.add(btnFechar, BorderLayout.EAST);
+//        add(footer, BorderLayout.SOUTH);
         txtFiltroCpf = new JTextField(9);
         txtFiltroNome = new JTextField(15);
-
         txtFiltroCargo = new JTextField(9);
         txtFiltroTipoContratacao = new JTextField(5);
         txtFiltroStatus = new JTextField(5);
         txtFiltroDepartamento = new JTextField(10);
 
+        JPanel botoesEsquerda = new JPanel();
+        JPanel botoesDireita = new JPanel();
+        JPanel painelBusca = new JPanel(new BorderLayout());
+        painelBusca.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+
         JButton btnBuscar = new JButton("Filtrar");
         JButton btnLimpar = new JButton("Listar Todos");
 
-        painelBusca.add(new JLabel("CPF:"));
-        painelBusca.add(txtFiltroCpf);
-        painelBusca.add(new JLabel("Nome:"));
-        painelBusca.add(txtFiltroNome);
+        botoesEsquerda.add(new JLabel("CPF:"));
+        botoesEsquerda.add(txtFiltroCpf);
+        botoesEsquerda.add(new JLabel("Nome:"));
+        botoesEsquerda.add(txtFiltroNome);
+        botoesEsquerda.add(new JLabel("Cargo:"));
+        botoesEsquerda.add(txtFiltroCargo);
+        botoesEsquerda.add(new JLabel("Regime:"));
+        botoesEsquerda.add(txtFiltroTipoContratacao);
+        botoesEsquerda.add(new JLabel("Status:"));
+        botoesEsquerda.add(txtFiltroStatus);
+        botoesEsquerda.add(new JLabel("Departamento:"));
+        botoesEsquerda.add(txtFiltroDepartamento);
 
-        painelBusca.add(new JLabel("Cargo:"));
-        painelBusca.add(txtFiltroCargo);
-        painelBusca.add(new JLabel("Regime:"));
-        painelBusca.add(txtFiltroTipoContratacao);
-        painelBusca.add(new JLabel("Status:"));
-        painelBusca.add(txtFiltroStatus);
-        painelBusca.add(new JLabel("Departamento:"));
-        painelBusca.add(txtFiltroDepartamento);
+        botoesDireita.add(btnBuscar, BorderLayout.WEST);
+        botoesDireita.add(btnLimpar, BorderLayout.EAST);
 
-        painelBusca.add(btnBuscar);
-        painelBusca.add(btnLimpar);
-
+        painelBusca.add(botoesEsquerda, BorderLayout.WEST);
+        painelBusca.add(botoesDireita, BorderLayout.EAST);
         add(painelBusca, BorderLayout.NORTH);
 
-        // --- 2. Tabela (CENTER) ---
-        String[] colunas = {"CPF", "Nome", "Email", "Telefone", "Currículo"};
-        model = new DefaultTableModel(colunas, 0) {
-            @Override public boolean isCellEditable(int row, int col) { return false; }
-        };
+        // CENTRO
+        List<Funcionario> funcionarios = new LeitorFuncionario().retornaListaAtivos();
+        FolhaPagamentoTableModel model = new FolhaPagamentoTableModel(funcionarios);
+
         tabela = new JTable(model);
         tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         add(new JScrollPane(tabela), BorderLayout.CENTER);
 
-        // --- 3. Rodapé com Botões de Ação (SOUTH) ---
+        // SUL
         JButton btnFechar = new JButton("Fechar");
         JButton btnCalcularSalario = new JButton("Calcular Salários");
         JButton btnGerarFolha = new JButton("Gerar Folha");
@@ -82,13 +102,7 @@ public class TelaFinanceiro extends JFrame {
         footer.add(btnFechar);
         add(footer, BorderLayout.SOUTH);
 
-        // --- 4. Listeners ---
-        btnBuscar.addActionListener(e -> carregar(true));
-        btnLimpar.addActionListener(e -> {
-            txtFiltroCpf.setText("");
-            txtFiltroNome.setText("");
-            carregar(false);
-        });
+        // Listeners
         btnFechar.addActionListener(e -> dispose());
         btnGerarFolha.addActionListener(e -> abrirFolhaPagamento());
 
@@ -96,74 +110,12 @@ public class TelaFinanceiro extends JFrame {
         setSize(Constantes.ALTURA_PADRAO_PAGINA, Constantes.LARGURA_PADRAO_PAGINA);
         setLocationRelativeTo(null);
 
-        carregar(false);
     }
 
     private void abrirFolhaPagamento() {
         TelaFolhaPagamento tela = new TelaFolhaPagamento();
         tela.setVisible(true);
-        this.setVisible(false);
+//        this.setVisible(false);
     }
 
-    private void carregar(boolean usarFiltro) {
-        model.setRowCount(0);
-        try {
-            List<Candidato> lista = service.listarCandidatos();
-
-            String filtroCpf = txtFiltroCpf.getText().trim();
-            String filtroNome = txtFiltroNome.getText().trim().toLowerCase();
-
-            if (usarFiltro && (!filtroCpf.isEmpty() || !filtroNome.isEmpty())) {
-                lista = lista.stream()
-                        // CORREÇÃO AQUI
-                        .filter(c -> filtroCpf.isEmpty() || c.getCpf_cnpj().contains(filtroCpf))
-                        .filter(c -> filtroNome.isEmpty() || c.getNome().toLowerCase().contains(filtroNome))
-                        .collect(Collectors.toList());
-            }
-
-            for (Candidato c : lista) {
-                model.addRow(new Object[]{
-                        // CORREÇÃO AQUI
-                        c.getCpf_cnpj(), c.getNome(), c.getEmail(),
-                        c.getTelefone() != null ? c.getTelefone() : "-",
-                        c.getLinkCurriculo() != null ? c.getLinkCurriculo() : "-"
-                });
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Erro ao carregar candidatos: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    private void deletarCandidato() {
-        int linhaSelecionada = tabela.getSelectedRow();
-        if (linhaSelecionada == -1) {
-            JOptionPane.showMessageDialog(this, "Selecione um candidato para deletar.", "Aviso", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        // CPF é lido da primeira coluna, que agora é c.getCpf_cnpj()
-        String cpf = (String) model.getValueAt(linhaSelecionada, 0);
-        String nome = (String) model.getValueAt(linhaSelecionada, 1);
-
-        int confirm = JOptionPane.showConfirmDialog(this,
-                "Tem certeza que deseja deletar o candidato:\n" + nome + " (" + cpf + ")?\n" +
-                        "Esta ação é irreversível e só será permitida se não houver candidaturas vinculadas.",
-                "Confirmar Exclusão", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-
-        if (confirm == JOptionPane.YES_OPTION) {
-            try {
-                // Service ainda espera 'cpf' como parâmetro, o que está correto
-                if (service.deletarCandidato(cpf)) {
-                    JOptionPane.showMessageDialog(this, "Candidato excluído com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    carregar(false);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Não foi possível encontrar ou deletar o candidato.", "Erro", JOptionPane.ERROR_MESSAGE);
-                }
-            } catch (IllegalArgumentException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro de Regra de Negócio", JOptionPane.ERROR_MESSAGE);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Erro ao deletar: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }
 }

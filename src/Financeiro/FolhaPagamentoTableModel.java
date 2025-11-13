@@ -1,17 +1,17 @@
 package Financeiro;
 
-import Seguranca.dominio.Funcionario;
-
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
-public class FuncionarioTableModel extends AbstractTableModel {
+import Seguranca.dominio.Funcionario;
 
+
+public class FolhaPagamentoTableModel extends AbstractTableModel {
 
     private List<Funcionario> funcionarios;
     private String[] colunas = {"Matrícula", "Nome", "Cargo", "Departamento", "Status", "Tipo", "Salário Base", "Salário Líquido", "Impostos Retidos"};
 
-    public FuncionarioTableModel(List<Funcionario> dados) {
+    public FolhaPagamentoTableModel(List<Funcionario> dados) {
         this.funcionarios = dados;
     }
 

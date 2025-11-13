@@ -4,6 +4,33 @@ import java.util.ArrayList;
 
 
 public class Pessoa {
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
+    }
+
+    public String getFisicaOuJuridica() {
+        return fisicaOuJuridica;
+    }
+
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public String getEmailPessoal() {
+        return emailPessoal;
+    }
+
+    public String getTelefonePessoal() {
+        return telefonePessoal;
+    }
+
+    public String getEnderecoCompleto() {
+        return enderecoCompleto;
+    }
 
     private String nome;
     private String cpf_cnpj;
@@ -30,8 +57,8 @@ public class Pessoa {
         this.departamento = departamento;
     }
 
-    public Pessoa (String nome, String fisicaOuJuridica, String cpf_cnpj, String dataNascimento, String emailPessoal, String telefonePessoal, String enderecoCompleto) {
-
+    public Pessoa (long id, String nome, String fisicaOuJuridica, String cpf_cnpj, String dataNascimento, String emailPessoal, String telefonePessoal, String enderecoCompleto) {
+        this.id = id;
         this.nome = nome;
         this.cpf_cnpj = cpf_cnpj;
         this.fisicaOuJuridica = fisicaOuJuridica;
@@ -50,6 +77,30 @@ public class Pessoa {
         this.cpf_cnpj = cpf_cnpj;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setFisicaOuJuridica(String fisicaOuJuridica) {
+        this.fisicaOuJuridica = fisicaOuJuridica;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public void setEmailPessoal(String emailPessoal) {
+        this.emailPessoal = emailPessoal;
+    }
+
+    public void setTelefonePessoal(String telefonePessoal) {
+        this.telefonePessoal = telefonePessoal;
+    }
+
+    public void setEnderecoCompleto(String enderecoCompleto) {
+        this.enderecoCompleto = enderecoCompleto;
+    }
+
     // Adicionar getter para nome
     public String getNome() {
         return nome;
@@ -63,6 +114,7 @@ public class Pessoa {
 
         return this.status;
     }
+
     // Em Seguranca.dominio.Pessoa.java
 
     // Adicionar getter para departamento (CRÍTICO PARA O REPOSITÓRIO CSV)
@@ -83,6 +135,16 @@ public class Pessoa {
         }
 
         return null;
+    }
+
+    @Override
+    public String toString () {
+        return id+", "+nome+", "+fisicaOuJuridica+", "+cpf_cnpj+", "+dataNascimento+", "+emailPessoal+", "+telefonePessoal+", "+enderecoCompleto;
+
+    }
+
+    public long getId() {
+        return id;
     }
 
     // ... restante da classe

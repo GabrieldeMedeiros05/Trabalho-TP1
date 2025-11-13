@@ -1,19 +1,17 @@
 package Financeiro.ui;
 
-import Candidatura.dominio.Candidato;
 import Candidatura.servico.CandidaturaService;
 import Candidatura.ui.CandidaturaModuleConfig;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import Financeiro.FuncionarioTableModel;
+import Financeiro.FolhaPagamentoTableModel;
+import Financeiro.dados.LeitorFuncionario;
 import Seguranca.dominio.Funcionario;
-import projeto.Constantes;
+import utils.Constantes;
 
 public class TelaFolhaPagamento extends JFrame {
     private final CandidaturaService service = CandidaturaModuleConfig.candidaturaService();
@@ -26,23 +24,19 @@ public class TelaFolhaPagamento extends JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout(8, 8));
 
-        // --- 1. Painel de Busca (NORTH) ---
+        // NORTE
         JPanel painelBusca = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
 
-        // --- 2. Tabela (CENTER) ---
-
+        // CENTER
         // Dados da tabela
-        List<Funcionario> funcionarios = new ArrayList<>();
-        funcionarios.add(new Funcionario("Francisco da Luz", "Física", "014.873.692-04;1999-01-29", "dataNascimento", "emailPessoal", "telefonePessoal", "enderecoCompleto", "matricula", "cargo", "departamento", "dataContratacao", 1000f, "status", "tipoContrato", 44, "emailCorporativo", "telefoneFixo", "telefoneResidencial", "telefoneCelularCorporativo"));
-        funcionarios.add(new Funcionario("Theodoro da Paz", "Física", "420.635.971-70;1979-06-29", "dataNascimento", "emailPessoal", "telefonePessoal", "enderecoCompleto", "matricula", "cargo", "departamento", "dataContratacao", 1000f, "status", "tipoContrato", 44, "emailCorporativo", "telefoneFixo", "telefoneResidencial", "telefoneCelularCorporativo"));
-        funcionarios.add(new Funcionario("Valentim Vieira", "Física", "893.725.140-04", "dataNascimento", "emailPessoal", "telefonePessoal", "enderecoCompleto", "matricula", "cargo", "departamento", "dataContratacao", 1000f, "status", "tipoContrato", 44, "emailCorporativo", "telefoneFixo", "telefoneResidencial", "telefoneCelularCorporativo"));
-        FuncionarioTableModel model = new FuncionarioTableModel(funcionarios);
+        List<Funcionario> funcionarios = new LeitorFuncionario().retornaListaAtivos();
+        FolhaPagamentoTableModel model = new FolhaPagamentoTableModel(funcionarios);
 
         tabela = new JTable(model);
         tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         add(new JScrollPane(tabela), BorderLayout.CENTER);
 
-        // --- 3. Rodapé com Botões de Ação (SOUTH) ---
+        // SUL
         JPanel botoesEsquerda = new JPanel();
         JPanel footer = new JPanel(new BorderLayout());
         footer.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
@@ -60,7 +54,7 @@ public class TelaFolhaPagamento extends JFrame {
         footer.add(btnFechar, BorderLayout.EAST);
         add(footer, BorderLayout.SOUTH);
 
-        // --- 4. Listeners ---
+        // Listeners
         btnFechar.addActionListener(e -> dispose());
 //        btnGerarFolha.addActionListener(e -> abrirRelatroioFinanceiro());
 

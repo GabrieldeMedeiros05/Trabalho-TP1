@@ -1,6 +1,6 @@
 package Financeiro;
 import javax.swing.*;
-import projeto.Constantes;
+import utils.Constantes;
 
 public class CadastroRegra extends JFrame {
     private JPanel PainelCadastroRegra;
