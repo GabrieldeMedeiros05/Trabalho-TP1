@@ -1,6 +1,6 @@
 package Financeiro;
 import javax.swing.*;
-import projeto.Constantes;
+import utils.Constantes;
 
 public class VisualizaRegra extends JFrame {
     private JPanel PainelVisualizaRegra;
