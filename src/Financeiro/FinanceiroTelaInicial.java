@@ -1,7 +1,7 @@
 package Financeiro;
 
 import javax.swing.*;
-import projeto.Constantes;
+import utils.Constantes;
 
 class FinanceiroTelaInicial extends JFrame {
     private JPanel PainelFinanceiro;

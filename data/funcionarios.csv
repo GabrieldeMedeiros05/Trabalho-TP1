@@ -1,0 +1,51 @@
+idPessoa;matricula;cargo;departamento;dataContratacao;salarioBase;status;tipoContrato;cargaHoraria;emailCorporativo;telefoneRamal;telefoneCelularCorporativo;valeTransporte;valeAlimentação;isentoImpostos
+1;VEN-1-1999;Especialista em RH;Vendas;2023-08-14;4314.07;Ativo;CLT;40;luísa.pereira@vendascorp.com;(61) 3552-4369;(61) 98552-7874;true;false;false
+2;REC-2-1987;Designer UX/UI;Recursos Humanos;2023-05-29;18822.85;Ativo;Temporário;44;alícia.martins@recursoshumanoscorp.com;(61) 3552-5540;(61) 98552-9997;true;true;false
+3;JUR-3-1996;Coordenador de Vendas;Jurídico;2023-03-12;19277.08;Ativo;Estágio;40;sarah.vasconcelos@jurídicocorp.com;(61) 3552-1528;(61) 98552-4399;true;true;true
+4;JUR-4-1977;Designer UX/UI;Jurídico;2024-05-16;9528.96;Ativo;Temporário;44;dra..mota@jurídicocorp.com;(61) 3552-7492;(61) 98552-3794;false;false;false
+5;VEN-5-1978;Gerente de Projetos;Vendas;2022-12-30;2500.36;Ativo;Estágio;30;sra..vasconcelos@vendascorp.com;(61) 3552-8272;(61) 98552-3476;false;false;true
+6;OPE-6-1992;Analista Financeiro;Operações;2023-03-03;10935.22;Ativo;Estágio;44;melina.montenegro@operaçõescorp.com;(61) 3552-1354;(61) 98552-3118;true;true;false
+7;FIN-7-2005;Gerente de Projetos;Financeiro;2022-11-17;10107.9;Inativo;PJ;40;vitor.gomes@financeirocorp.com;(61) 3552-4149;(61) 98552-6572;true;false;true
+8;VEN-8-2018;Especialista em RH;Vendas;2024-11-09;7689.87;Ativo;Estágio;44;esther.fonseca@vendascorp.com;(61) 3552-7214;(61) 98552-6444;true;true;true
+9;TI-9-2017;Designer UX/UI;TI;2023-01-09;2087.39;Ativo;Temporário;40;juan.pinto@ticorp.com;(61) 3552-8168;(61) 98552-7792;false;false;false
+10;PRO-10-2008;Coordenador de Vendas;Produtos;2022-06-17;8477.75;Ativo;CLT;44;sr..rios@produtoscorp.com;(61) 3552-4493;(61) 98552-3151;false;false;true
+11;JUR-11-1977;Analista de Dados;Jurídico;2025-10-04;16166.57;Ativo;Estágio;44;maria.freitas@jurídicocorp.com;(61) 3552-8868;(61) 98552-9455;true;true;true
+12;PRO-12-2006;Designer UX/UI;Produtos;2023-11-08;11507.24;Inativo;Estágio;40;maria.vasconcelos@produtoscorp.com;(61) 3552-5560;(61) 98552-7736;false;true;false
+13;PRO-13-1972;Coordenador de Vendas;Produtos;2025-03-02;5324.81;Inativo;CLT;44;alexia.macedo@produtoscorp.com;(61) 3552-3377;(61) 98552-2642;true;true;false
+14;JUR-14-2018;Gerente de Projetos;Jurídico;2021-12-11;5910.76;Inativo;Estágio;44;cecília.ribeiro@jurídicocorp.com;(61) 3552-8109;(61) 98552-1903;true;false;true
+15;OPE-15-2006;Coordenador de Vendas;Operações;2022-02-02;4241.88;Inativo;Temporário;30;isabela.silveira@operaçõescorp.com;(61) 3552-7655;(61) 98552-8527;true;true;false
+16;OPE-16-2006;Analista Financeiro;Operações;2021-07-06;17832.86;Inativo;CLT;40;benicio.pastor@operaçõescorp.com;(61) 3552-6203;(61) 98552-7780;false;false;false
+17;PRO-17-2007;Analista de Dados;Produtos;2024-07-23;15871.42;Ativo;Temporário;40;agatha.albuquerque@produtoscorp.com;(61) 3552-2392;(61) 98552-1240;false;false;true
+18;REC-18-2022;Coordenador de Vendas;Recursos Humanos;2022-01-14;17965.46;Ativo;PJ;30;joão.costela@recursoshumanoscorp.com;(61) 3552-8462;(61) 98552-6408;false;true;true
+19;MAR-19-2009;Coordenador de Vendas;Marketing;2022-03-19;7609.78;Inativo;CLT;30;erick.conceição@marketingcorp.com;(61) 3552-3343;(61) 98552-9464;true;false;true
+20;JUR-20-1986;Técnico de Suporte;Jurídico;2024-01-16;17826.66;Inativo;PJ;30;rafaela.machado@jurídicocorp.com;(61) 3552-3201;(61) 98552-6071;true;false;true
+21;JUR-21-1972;Coordenador de Vendas;Jurídico;2023-08-31;16650.8;Ativo;CLT;40;dr..siqueira@jurídicocorp.com;(61) 3552-3647;(61) 98552-1285;false;true;false
+22;PRO-22-2013;Gerente de Projetos;Produtos;2023-05-16;13202.3;Inativo;Estágio;44;pedro.ribeiro@produtoscorp.com;(61) 3552-9735;(61) 98552-5941;true;false;false
+23;REC-23-2008;Gerente de Projetos;Recursos Humanos;2021-11-24;19923.72;Ativo;Temporário;40;helena.garcia@recursoshumanoscorp.com;(61) 3552-4783;(61) 98552-1315;true;true;true
+24;OPE-24-1996;Coordenador de Vendas;Operações;2025-03-29;4601.33;Inativo;CLT;30;juan.martins@operaçõescorp.com;(61) 3552-4784;(61) 98552-2794;false;false;false
+25;MAR-25-2018;Analista Financeiro;Marketing;2021-05-20;15311.43;Ativo;Estágio;40;hellena.pereira@marketingcorp.com;(61) 3552-8897;(61) 98552-6134;false;true;false
+26;FIN-26-1984;Técnico de Suporte;Financeiro;2022-07-24;10106.84;Inativo;Temporário;40;aurora.conceição@financeirocorp.com;(61) 3552-8956;(61) 98552-3560;true;false;true
+27;VEN-27-1992;Especialista em RH;Vendas;2021-01-16;9308.01;Inativo;Temporário;40;sr..borges@vendascorp.com;(61) 3552-6310;(61) 98552-4490;false;true;false
+28;TI-28-2014;Analista Financeiro;TI;2024-10-17;7313.64;Ativo;CLT;30;dom.leão@ticorp.com;(61) 3552-3089;(61) 98552-2603;true;false;true
+29;OPE-29-2025;Técnico de Suporte;Operações;2024-10-07;14601.14;Ativo;PJ;40;lavínia.rodrigues@operaçõescorp.com;(61) 3552-5272;(61) 98552-6635;false;true;false
+30;JUR-30-1974;Designer UX/UI;Jurídico;2021-01-04;6482.52;Ativo;PJ;40;ana.mota@jurídicocorp.com;(61) 3552-5149;(61) 98552-7891;false;false;true
+31;OPE-31-1982;Desenvolvedor Full-Stack;Operações;2024-11-24;9415.19;Inativo;PJ;30;isis.santos@operaçõescorp.com;(61) 3552-9033;(61) 98552-3583;true;true;false
+32;PRO-32-1975;Técnico de Suporte;Produtos;2024-10-25;14832.94;Ativo;Estágio;44;kamilly.jesus@produtoscorp.com;(61) 3552-9638;(61) 98552-5947;true;true;false
+33;TI-33-1995;Técnico de Suporte;TI;2023-02-09;16793.29;Inativo;Estágio;44;cecilia.guerra@ticorp.com;(61) 3552-6250;(61) 98552-8118;true;true;false
+34;PRO-34-2020;Desenvolvedor Full-Stack;Produtos;2024-01-21;17478.33;Inativo;PJ;30;vitória.abreu@produtoscorp.com;(61) 3552-1087;(61) 98552-5503;false;true;true
+35;REC-35-1997;Designer UX/UI;Recursos Humanos;2025-09-28;19314.05;Ativo;Estágio;44;murilo.carvalho@recursoshumanoscorp.com;(61) 3552-2058;(61) 98552-9210;true;false;false
+36;OPE-36-2003;Técnico de Suporte;Operações;2024-04-29;3516.81;Ativo;Estágio;44;luiz.costela@operaçõescorp.com;(61) 3552-2033;(61) 98552-1486;false;true;false
+37;TI-37-1985;Especialista em RH;TI;2024-08-13;10931.25;Ativo;Temporário;40;carlos.machado@ticorp.com;(61) 3552-2772;(61) 98552-6590;true;false;false
+38;OPE-38-1985;Gerente de Projetos;Operações;2021-04-11;8303.29;Inativo;Temporário;30;isabella.fonseca@operaçõescorp.com;(61) 3552-3904;(61) 98552-1226;false;false;false
+39;REC-39-2021;Designer UX/UI;Recursos Humanos;2022-10-24;4367.16;Inativo;Temporário;40;joão.souza@recursoshumanoscorp.com;(61) 3552-2220;(61) 98552-4037;false;false;true
+40;MAR-40-2008;Especialista em RH;Marketing;2022-07-22;9219.15;Ativo;CLT;40;heitor.sales@marketingcorp.com;(61) 3552-4122;(61) 98552-3827;true;false;true
+41;OPE-41-2014;Analista Financeiro;Operações;2021-07-26;19772.33;Inativo;PJ;30;beatriz.costa@operaçõescorp.com;(61) 3552-4087;(61) 98552-4796;true;false;true
+42;REC-42-1987;Técnico de Suporte;Recursos Humanos;2024-11-08;4823.65;Ativo;Estágio;40;ísis.santos@recursoshumanoscorp.com;(61) 3552-9580;(61) 98552-1296;false;false;false
+43;FIN-43-1987;Coordenador de Vendas;Financeiro;2022-02-13;14121.73;Inativo;PJ;30;lorena.costela@financeirocorp.com;(61) 3552-5275;(61) 98552-8767;true;false;true
+44;REC-44-1975;Técnico de Suporte;Recursos Humanos;2023-05-14;7364.57;Inativo;Temporário;40;alana.vargas@recursoshumanoscorp.com;(61) 3552-5338;(61) 98552-6585;false;false;false
+45;TI-45-2018;Analista Financeiro;TI;2020-12-07;2634.05;Inativo;PJ;30;maria.machado@ticorp.com;(61) 3552-6384;(61) 98552-3790;false;true;true
+46;OPE-46-1976;Gerente de Projetos;Operações;2021-11-20;13143.81;Inativo;Estágio;40;vitor.araújo@operaçõescorp.com;(61) 3552-2431;(61) 98552-8753;false;true;true
+47;OPE-47-1997;Gerente de Projetos;Operações;2021-12-27;12972.64;Inativo;Temporário;44;clarice.aragão@operaçõescorp.com;(61) 3552-8420;(61) 98552-7337;false;false;true
+48;TI-48-2009;Desenvolvedor Full-Stack;TI;2023-11-30;9818.62;Ativo;Estágio;30;otávio.câmara@ticorp.com;(61) 3552-8156;(61) 98552-7308;true;true;true
+49;FIN-49-1986;Especialista em RH;Financeiro;2025-08-05;15076.49;Inativo;PJ;30;agatha.almeida@financeirocorp.com;(61) 3552-5374;(61) 98552-1043;false;false;false
+50;REC-50-1977;Técnico de Suporte;Recursos Humanos;2025-09-22;14976.88;Inativo;CLT;40;caio.câmara@recursoshumanoscorp.com;(61) 3552-2033;(61) 98552-6993;false;true;true

@@ -1,6 +1,8 @@
 package main.ui;
 
 import Candidatura.ui.MenuCandidatura;
+import Financeiro.ui.TelaFinanceiro;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,12 +32,11 @@ public class MenuPrincipal extends JFrame {
         grid.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
 
         btnAdminGestao = new JButton("1. Administração e Gestão (Em Construção)");
-        btnFinanceiro = new JButton("2. Módulo Financeiro (Em Construção)");
+        btnFinanceiro = new JButton("2. Módulo Financeiro");
         btnRecrutamento = new JButton("3. Recrutamento e Candidatura");
         btnCadastrarUsuario = new JButton("4. Cadastrar Novo Usuário (RH/Admin)"); // NOVO
 
         btnAdminGestao.setEnabled(false);
-        btnFinanceiro.setEnabled(false);
 
         grid.add(btnAdminGestao);
         grid.add(btnFinanceiro);
@@ -57,6 +58,7 @@ public class MenuPrincipal extends JFrame {
     }
 
     private void configurarListeners() {
+        btnFinanceiro.addActionListener(e -> abrirModuloFinanceiro());
         btnRecrutamento.addActionListener(e -> abrirModuloCandidatura());
         btnCadastrarUsuario.addActionListener(e -> abrirCadastroUsuario()); // NOVO LISTENER
         sairButton.addActionListener(e -> dispose());
@@ -69,6 +71,11 @@ public class MenuPrincipal extends JFrame {
 
     private void abrirCadastroUsuario() {
         TelaCadastroUsuario tela = new TelaCadastroUsuario();
+        tela.setVisible(true);
+    }
+
+    private void abrirModuloFinanceiro() {
+        TelaFinanceiro tela = new TelaFinanceiro();
         tela.setVisible(true);
     }
 }
