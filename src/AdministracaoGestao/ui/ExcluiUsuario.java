@@ -1,10 +1,10 @@
+package AdministracaoGestao.ui;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
+import java.awt.event.*;
 
-public class ExcluiUsuario extends JFrame implements ActionListener {
+public class ExcluiUsuario extends JFrame implements ActionListener{
 
     public ExcluiUsuario() {
         initComponets();
@@ -15,12 +15,12 @@ public class ExcluiUsuario extends JFrame implements ActionListener {
         setSize(1280,720);
         setLayout(null);
         setVisible(true);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
         GridLayout gridLayout = new GridLayout(1,1);
         setLayout(gridLayout);
 
         setLocationRelativeTo(null);
-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         add(mainPanel());
     }
@@ -69,18 +69,7 @@ public class ExcluiUsuario extends JFrame implements ActionListener {
         label2.setForeground(new Color(240,246,252));
         label2.setFont(new Font("Roboto", Font.PLAIN, 20));
 
-        // JLabel label3 = new JLabel("Status");
-        // label3.setForeground(new Color(240,246,252));
-        // label3.setFont(new Font(null, Font.PLAIN, 20));
-
-        // JLabel label4 = new JLabel("Departamento");
-        // label4.setForeground(new Color(240,246,252));
-        // label4.setFont(new Font(null, Font.PLAIN, 20));
-
         panel1.add(label1);
-        panel1.add(label2);
-        // panel1.add(label3);
-        // panel1.add(label4);
 
         return panel1;
     }
@@ -111,24 +100,8 @@ public class ExcluiUsuario extends JFrame implements ActionListener {
         text2.setFont(new Font(null, Font.PLAIN, 20));
         text2.setText("XXX.XXX.XXX-XX");
 
-        // text3 = new JTextField();
-        // text3.setCaretColor(Color.green);
-        // text3.setBackground(new Color(50,50,50));
-        // text3.setForeground(new Color(240,246,252));
-        // text3.setFont(new Font(null, Font.PLAIN, 20));
-        // text3.setText("Ativo");
-
-        // text4 = new JTextField();
-        // text4.setCaretColor(Color.green);
-        // text4.setBackground(new Color(50,50,50));
-        // text4.setForeground(new Color(240,246,252));
-        // text4.setFont(new Font(null, Font.PLAIN, 20));
-        // text4.setText("Recrutamento");
-
         panel2.add(text1);
         panel2.add(text2);
-        // panel2.add(text3);
-        // panel2.add(text4);
     
         return panel2;
     }
@@ -159,20 +132,10 @@ public class ExcluiUsuario extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource()==botao) {
-            
+
             this.dispose();
         }
 
 
     }
-
-    public static void main(String[] args) {
-
-        new ExcluiUsuario().setVisible(true);
-        
-    }
-
-
-    
-
 }

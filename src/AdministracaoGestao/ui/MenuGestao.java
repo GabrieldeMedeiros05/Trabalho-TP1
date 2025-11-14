@@ -1,28 +1,32 @@
-// package AdministracaoGestao.ui;
+package AdministracaoGestao.ui;
+
+// import Gestao.ui.CadastroUsuario;
+// import Gestao.ui.ExcluiUsuario;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListener {
+public class MenuGestao extends JFrame {
 
-    public AdministracaoGestaoDeUsuario() {
+    public MenuGestao() {
         initComponets();
     }
 
     public void initComponets(){
+        setVisible(true);
         setTitle("Administração/Gestão de Usuário");
         setSize(1280,720);
         setLayout(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
         GridLayout gridLayout = new GridLayout(1,1);
         setLayout(gridLayout);
 
         setLocationRelativeTo(null);
-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         add(mainPanel());
+
+        configurarListeners();
     }
 
     public JPanel mainPanel(){
@@ -76,7 +80,6 @@ public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListen
         botao1.setBackground(new Color(21,27,35));
         botao1.setForeground(new Color(240,246,252));
         botao1.setFocusable(false);
-        botao1.addActionListener(this);
         botao1.setFont(new Font("Roboto", Font.PLAIN, 17));
 
         panel1.add(botao1);
@@ -90,7 +93,6 @@ public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListen
         botao2.setBackground(new Color(21,27,35));
         botao2.setForeground(new Color(240,246,252));
         botao2.setFocusable(false);
-        botao2.addActionListener(this);
         botao2.setFont(new Font("Roboto", Font.PLAIN, 17));
 
         panel2.add(botao2);
@@ -103,7 +105,6 @@ public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListen
         botao3.setBackground(new Color(21,27,35));
         botao3.setForeground(new Color(240,246,252));
         botao3.setFocusable(false);
-        botao3.addActionListener(this);
         botao3.setFont(new Font("Roboto", Font.PLAIN, 17));
 
         panel3.add(botao3);
@@ -116,7 +117,6 @@ public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListen
         botao4.setBackground(new Color(21,27,35));
         botao4.setForeground(new Color(240,246,252));
         botao4.setFocusable(false);
-        botao4.addActionListener(this);
         botao4.setFont(new Font("Roboto", Font.PLAIN, 17));
 
         panel4.add(botao4);
@@ -129,7 +129,6 @@ public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListen
         botao5.setBackground(new Color(21,27,35));
         botao5.setForeground(new Color(240,246,252));
         botao5.setFocusable(false);
-        botao5.addActionListener(this);
         botao5.setFont(new Font("Roboto", Font.PLAIN, 17));
         
         panel5.add(botao5);
@@ -142,7 +141,6 @@ public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListen
         botao6.setBackground(new Color(21,27,35));
         botao6.setForeground(new Color(240,246,252));
         botao6.setFocusable(false);
-        botao6.addActionListener(this);
         botao6.setFont(new Font("Roboto", Font.PLAIN, 17));
 
         panel6.add(botao6);
@@ -166,7 +164,6 @@ public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListen
         botao.setBackground(new Color(21,27,35));
         botao.setForeground(new Color(240,246,252));
         botao.setFocusable(false);
-        botao.addActionListener(this);
         botao.setFont(new Font("Roboto", Font.PLAIN, 17));
 
         panel.add(botao);
@@ -174,52 +171,34 @@ public class AdministracaoGestaoDeUsuario extends JFrame implements ActionListen
         return panel;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-        if (e.getSource()==botao) {
-            
-            CadastroUsuario janela = new CadastroUsuario();
-        }
-
-        if (e.getSource()==botao1) {
-            
-            CadastroUsuario cadastro = new CadastroUsuario();
-        }
-
-        if (e.getSource()==botao2) {
-            
-            CadastroUsuario janela = new CadastroUsuario();
-        }
-
-        if (e.getSource()==botao3) {
-            
-            ExcluiUsuario janela = new ExcluiUsuario();
-        }
-
-        if (e.getSource()==botao4) {
-            
-            CadastroUsuario janela = new CadastroUsuario();
-        }
-
-        if (e.getSource()==botao5) {
-            
-            CadastroUsuario janela = new CadastroUsuario();
-        }
-
-        if (e.getSource()==botao6) {
-            
-            CadastroUsuario janela = new CadastroUsuario();
-        }
-
-
+    private void abrir(JFrame f) {
+        f.setLocationRelativeTo(this);
+        f.setVisible(true);
     }
 
-    public static void main(String[] args) {
-
-        new AdministracaoGestaoDeUsuario().setVisible(true);
+    private void configurarListeners() {
+        botao1.addActionListener(e -> abrir(new CadastroUsuario()));
+        botao3.addActionListener(e -> abrir(new ExcluiUsuario()));
         
     }
+
+
+    // public void configurarListeners() {
+    //     botao3.addActionListener(e -> abrirModuloGestao());
+    //     //botao3.addActionListener(e -> abrir(new ExcluiUsuario()));
+    //     // sairButton.addActionListener(e -> dispose());
+    // }
+
+    // private void abrirModuloGestao() {
+    //     Outrinho tela = new Outrinho();
+    //     tela.setVisible(true);
+    // }
+
+    // public static void main(String[] args) {
+
+    //     new MenuGestao().setVisible(true);
+        
+    // }
 
     
 }
