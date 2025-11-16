@@ -1,4 +1,4 @@
-package AdministracaoGestao.gestao;
+package AdministracaoGestao.modelos;
 
 import java.util.ArrayList;
 import Seguranca.dominio.Pessoa;

@@ -3,7 +3,7 @@ package Seguranca.dominio;
 // Importes necessários para o código (verifique se os caminhos estão corretos no seu ambiente)
 // Nota: Você deve ter o AdministracaoGestao no seu classpath para compilar
 // Nota: Você deve ter a Candidatura.excecoes.AutorizacaoException acessível
-import AdministracaoGestao.gestao.GestorMaster;
+import AdministracaoGestao.modelos.GestorMaster;
 import Candidatura.excecoes.AutorizacaoException;
 import java.util.ArrayList;
 
