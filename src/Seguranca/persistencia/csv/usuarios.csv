@@ -1,0 +1,6 @@
+idUsuario;login;senha;tipo;nome;cpf_cnpj;status;departamento
+1;candidato;123;CANDIDATO;Candidato Teste;12345678900;ATIVO;CANDIDATURA
+2;rh;456;RH;Recrutador Teste;99999999900;ATIVO;RECRUTAMENTO
+3;Ativo;testeteste;Administrador;Fulano da Silva;12121212121;ATIVO;ADMINISTRACAO
+4;valcarcel;987456;Gestor;Vitor;12345678910;ATIVO;ADMINISTRACAO
+5;algo;123;Administrador;algo;09876543210;ATIVO;ADMINISTRACAO

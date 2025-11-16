@@ -1,10 +1,20 @@
 package AdministracaoGestao.ui;
 
+import Candidatura.excecoes.RegraNegocioException;
+import Seguranca.servico.UsuarioService;
+import main.AppConfig;
+
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class ExcluiUsuario extends JFrame implements ActionListener{
+public class ExcluiUsuario extends JFrame {
+
+    // Injeção do serviço de segurança
+    private final UsuarioService usuarioService = AppConfig.usuarioService();
+
+    JTextField textNome;
+    JTextField textCpf;
 
     public ExcluiUsuario() {
         initComponets();
@@ -23,6 +33,32 @@ public class ExcluiUsuario extends JFrame implements ActionListener{
         setLocationRelativeTo(null);
 
         add(mainPanel());
+    }
+
+    private void excluirUsuario() {
+        String nome = textNome.getText().trim();
+        String cpf = textCpf.getText().trim();
+
+
+        if (nome.isEmpty() || cpf.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            usuarioService.excluirUsuario(cpf, nome);
+
+            JOptionPane.showMessageDialog(this,
+                    "Usuário excluído com sucesso! Login: ",
+                    "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+            dispose();
+
+        } catch (RegraNegocioException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro de Regra de Negócio", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao excluir: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public JPanel mainPanel(){
@@ -57,27 +93,23 @@ public class ExcluiUsuario extends JFrame implements ActionListener{
 
     public JPanel midPanel(){
 
-        JPanel panel1 = new JPanel(new GridLayout(2, 1, 0, 70));
-        panel1.setBounds(80, 215, 150, 200);
-        panel1.setBackground(new Color(10,20,30));
+        JPanel panel = new JPanel(new GridLayout(2, 1, 0, 70));
+        panel.setBounds(80, 215, 150, 200);
+        panel.setBackground(new Color(10,20,30));
 
-        JLabel label1 = new JLabel("Nome");
-        label1.setForeground(new Color(240,246,252));
-        label1.setFont(new Font("Roboto", Font.PLAIN, 20));
+        JLabel labelNome = new JLabel("Nome");
+        labelNome.setForeground(new Color(240,246,252));
+        labelNome.setFont(new Font("Roboto", Font.PLAIN, 20));
 
-        JLabel label2 = new JLabel("CPF/CNPJ");
-        label2.setForeground(new Color(240,246,252));
-        label2.setFont(new Font("Roboto", Font.PLAIN, 20));
+        JLabel labelCpf = new JLabel("CPF/CNPJ");
+        labelCpf.setForeground(new Color(240,246,252));
+        labelCpf.setFont(new Font("Roboto", Font.PLAIN, 20));
 
-        panel1.add(label1);
+        panel.add(labelNome);
+        panel.add(labelCpf);
 
-        return panel1;
+        return panel;
     }
-
-    JTextField text1;
-    JTextField text2;
-    JTextField text3;
-    JTextField text4;
 
     public JPanel midPanel2(){
 
@@ -86,27 +118,25 @@ public class ExcluiUsuario extends JFrame implements ActionListener{
         panel2.setBackground(new Color(10,20,30));
         
 
-        text1 = new JTextField();
-        text1.setCaretColor(Color.green);
-        text1.setBackground(new Color(50,50,50));
-        text1.setForeground(new Color(240,246,252));
-        text1.setFont(new Font(null, Font.PLAIN, 20));
-        text1.setText("Fulano da Silva");
+        textNome = new JTextField();
+        textNome.setCaretColor(Color.green);
+        textNome.setBackground(new Color(50,50,50));
+        textNome.setForeground(new Color(240,246,252));
+        textNome.setFont(new Font(null, Font.PLAIN, 20));
 
-        text2 = new JTextField();
-        text2.setCaretColor(Color.green);
-        text2.setBackground(new Color(50,50,50));
-        text2.setForeground(new Color(240,246,252));
-        text2.setFont(new Font(null, Font.PLAIN, 20));
-        text2.setText("XXX.XXX.XXX-XX");
+        textCpf = new JTextField();
+        textCpf.setCaretColor(Color.green);
+        textCpf.setBackground(new Color(50,50,50));
+        textCpf.setForeground(new Color(240,246,252));
+        textCpf.setFont(new Font(null, Font.PLAIN, 20));
 
-        panel2.add(text1);
-        panel2.add(text2);
+        panel2.add(textNome);
+        panel2.add(textCpf);
     
         return panel2;
     }
 
-    JButton botao;
+    JButton botaoExcluir;
 
     public JPanel lowerPanel(){
 
@@ -114,28 +144,19 @@ public class ExcluiUsuario extends JFrame implements ActionListener{
         panel.setBackground(new Color(10,20,30));
         panel.setBounds(300,520,1280,120);
 
-        botao = new JButton("Excluir");
-        
-        botao.setBounds(250,30,200,45);
-        botao.setBackground(new Color(21,27,35));
-        botao.setForeground(new Color(240,246,252));
-        botao.setFocusable(false);
-        botao.addActionListener(this);
-        botao.setFont(new Font("Roboto", Font.PLAIN, 17));
 
-        panel.add(botao);
+        botaoExcluir = new JButton("Excluir");
+        botaoExcluir.setBounds(250,30,200,45);
+        botaoExcluir.setBackground(new Color(21,27,35));
+        botaoExcluir.setForeground(new Color(240,246,252));
+        botaoExcluir.setFocusable(false);
+        botaoExcluir.setFont(new Font("Roboto", Font.PLAIN, 17));
+
+        panel.add(botaoExcluir);
+
+        botaoExcluir.addActionListener(e -> excluirUsuario());
 
         return panel;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-        if (e.getSource()==botao) {
-
-            this.dispose();
-        }
-
-
-    }
 }
