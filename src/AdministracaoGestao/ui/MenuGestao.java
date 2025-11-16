@@ -58,9 +58,9 @@ public class MenuGestao extends JFrame {
         return panel;
     }
 
-    JButton botao1;
-    JButton botao2;
-    JButton botao3;
+    JButton botaoCadastrar;
+    JButton botaoEditar;
+    JButton botaoExcluir;
     JButton botao4;
     JButton botao5;
     JButton botao6;
@@ -76,38 +76,38 @@ public class MenuGestao extends JFrame {
 
         JPanel panel1 = new JPanel(new GridLayout(1, 1));
 
-        botao1 = new JButton("Cadastrar");
-        botao1.setBackground(new Color(21,27,35));
-        botao1.setForeground(new Color(240,246,252));
-        botao1.setFocusable(false);
-        botao1.setFont(new Font("Roboto", Font.PLAIN, 17));
+        botaoCadastrar = new JButton("Cadastrar");
+        botaoCadastrar.setBackground(new Color(21,27,35));
+        botaoCadastrar.setForeground(new Color(240,246,252));
+        botaoCadastrar.setFocusable(false);
+        botaoCadastrar.setFont(new Font("Roboto", Font.PLAIN, 17));
 
-        panel1.add(botao1);
+        panel1.add(botaoCadastrar);
 
         panel.add(panel1);
 
         JPanel panel2 = new JPanel(new GridLayout(1, 1));
         
 
-        botao2 = new JButton("Editar");
-        botao2.setBackground(new Color(21,27,35));
-        botao2.setForeground(new Color(240,246,252));
-        botao2.setFocusable(false);
-        botao2.setFont(new Font("Roboto", Font.PLAIN, 17));
+        botaoEditar = new JButton("Editar");
+        botaoEditar.setBackground(new Color(21,27,35));
+        botaoEditar.setForeground(new Color(240,246,252));
+        botaoEditar.setFocusable(false);
+        botaoEditar.setFont(new Font("Roboto", Font.PLAIN, 17));
 
-        panel2.add(botao2);
+        panel2.add(botaoEditar);
     
         panel.add(panel2);
 
         JPanel panel3 = new JPanel(new GridLayout(1, 1));
 
-        botao3 = new JButton("Excluir");
-        botao3.setBackground(new Color(21,27,35));
-        botao3.setForeground(new Color(240,246,252));
-        botao3.setFocusable(false);
-        botao3.setFont(new Font("Roboto", Font.PLAIN, 17));
+        botaoExcluir = new JButton("Excluir");
+        botaoExcluir.setBackground(new Color(21,27,35));
+        botaoExcluir.setForeground(new Color(240,246,252));
+        botaoExcluir.setFocusable(false);
+        botaoExcluir.setFont(new Font("Roboto", Font.PLAIN, 17));
 
-        panel3.add(botao3);
+        panel3.add(botaoExcluir);
     
         panel.add(panel3);
 
@@ -177,28 +177,10 @@ public class MenuGestao extends JFrame {
     }
 
     private void configurarListeners() {
-        botao1.addActionListener(e -> abrir(new CadastroUsuario()));
-        botao3.addActionListener(e -> abrir(new ExcluiUsuario()));
+        botaoCadastrar.addActionListener(e -> abrir(new CadastroUsuario()));
+        botaoEditar.addActionListener(e -> abrir(new EditaUsuario()));
+        botaoExcluir.addActionListener(e -> abrir(new ExcluiUsuario()));
         
     }
 
-
-    // public void configurarListeners() {
-    //     botao3.addActionListener(e -> abrirModuloGestao());
-    //     //botao3.addActionListener(e -> abrir(new ExcluiUsuario()));
-    //     // sairButton.addActionListener(e -> dispose());
-    // }
-
-    // private void abrirModuloGestao() {
-    //     Outrinho tela = new Outrinho();
-    //     tela.setVisible(true);
-    // }
-
-    // public static void main(String[] args) {
-
-    //     new MenuGestao().setVisible(true);
-        
-    // }
-
-    
 }

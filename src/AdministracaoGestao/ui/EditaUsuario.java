@@ -8,8 +8,9 @@ import main.AppConfig;
 import java.awt.*;
 import javax.swing.*;
 
-public class CadastroUsuario extends JFrame {
-    // Injeção do serviço de segurança
+
+public class EditaUsuario extends JFrame  {
+
     private final UsuarioService usuarioService = AppConfig.usuarioService();
 
     JTextField textNome;
@@ -19,12 +20,12 @@ public class CadastroUsuario extends JFrame {
     JComboBox<String> cmbTipo;
 
 
-    public CadastroUsuario() {
+    public EditaUsuario() {
         initComponets();
     }
 
     public void initComponets(){
-        setTitle("Cadastro de Usuário");
+        setTitle("Editar de Usuário");
         setSize(1280,720);
         setLayout(null);
         setVisible(true);
@@ -39,7 +40,7 @@ public class CadastroUsuario extends JFrame {
         add(mainPanel());
     }
 
-    private void cadastrarUsuario() {
+    private void editarUsuario() {
         String nome = textNome.getText().trim();
         String cpfCnpj = textCpf.getText().trim();
         String login = textLogin.getText().trim();
@@ -67,10 +68,10 @@ public class CadastroUsuario extends JFrame {
                     departamento
             );
 
-            usuarioService.cadastrarUsuario(novoUsuario);
+            usuarioService.editarUsuario();
 
             JOptionPane.showMessageDialog(this,
-                    "Usuário " + tipo + " cadastrado com sucesso! Login: " + login,
+                    "Usuário " + tipo + " editado com sucesso! Login: " + login,
                     "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
             dispose();
@@ -78,7 +79,7 @@ public class CadastroUsuario extends JFrame {
         } catch (RegraNegocioException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro de Regra de Negócio", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Erro ao cadastrar: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Erro ao editar: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -101,7 +102,7 @@ public class CadastroUsuario extends JFrame {
         panel.setBackground(new Color(10,20,30));
         panel.setBounds(0,40,1280,100);
 
-        JLabel title = new JLabel("Cadastro de Usuário");
+        JLabel title = new JLabel("Editar de Usuário");
 
         title.setBounds(450,30,800,45);
         title.setForeground(new Color(240,246,252));
@@ -114,52 +115,24 @@ public class CadastroUsuario extends JFrame {
 
     public JPanel midPanel(){
 
-        JPanel panel = new JPanel(new GridLayout(5, 1, 0, 20));
+        JPanel panel = new JPanel(new GridLayout(1, 1, 0, 20));
         panel.setBounds(80, 180, 150, 320);
         panel.setBackground(new Color(10,20,30));
-
-        JLabel labelNome = new JLabel("Nome");
-        labelNome.setForeground(new Color(240,246,252));
-        labelNome.setFont(new Font("Roboto", Font.PLAIN, 20));
 
         JLabel labelCpf = new JLabel("CPF/CNPJ");
         labelCpf.setForeground(new Color(240,246,252));
         labelCpf.setFont(new Font("Roboto", Font.PLAIN, 20));
 
-        JLabel labelLogin = new JLabel("Login");
-        labelLogin.setForeground(new Color(240,246,252));
-        labelLogin.setFont(new Font("Roboto", Font.PLAIN, 20));
-
-        JLabel labelSenha = new JLabel("Senha");
-        labelSenha.setForeground(new Color(240,246,252));
-        labelSenha.setFont(new Font("Roboto", Font.PLAIN, 20));
-
-        JLabel labelTipo = new JLabel("Tipo");
-        labelTipo.setForeground(new Color(240,246,252));
-        labelTipo.setFont(new Font("Roboto", Font.PLAIN, 20));
-
-        panel.add(labelNome);
         panel.add(labelCpf);
-        panel.add(labelLogin);
-        panel.add(labelSenha);
-        panel.add(labelTipo);
 
         return panel;
     }
 
-    public JPanel midPanel2(){  
+    public JPanel midPanel2(){
 
-        JPanel panel = new JPanel(new GridLayout(5, 1, 0, 20));
+        JPanel panel = new JPanel(new GridLayout(1, 1, 0, 20));
         panel.setBounds(270, 180, 860, 320);
         panel.setBackground(new Color(10,20,30));
-
-
-        textNome = new JTextField();
-        textNome.setCaretColor(Color.green);
-        textNome.setBackground(new Color(50,50,50));
-        textNome.setForeground(new Color(240,246,252));
-        textNome.setFont(new Font(null, Font.PLAIN, 20));
-
 
         textCpf = new JTextField();
         textCpf.setCaretColor(Color.green);
@@ -167,28 +140,7 @@ public class CadastroUsuario extends JFrame {
         textCpf.setForeground(new Color(240,246,252));
         textCpf.setFont(new Font(null, Font.PLAIN, 20));
 
-        textLogin = new JTextField();
-        textLogin.setCaretColor(Color.green);
-        textLogin.setBackground(new Color(50,50,50));
-        textLogin.setForeground(new Color(240,246,252));
-        textLogin.setFont(new Font(null, Font.PLAIN, 20));
-
-        textSenha = new JPasswordField();
-        textSenha.setCaretColor(Color.green);
-        textSenha.setBackground(new Color(50,50,50));
-        textSenha.setForeground(new Color(240,246,252));
-        textSenha.setFont(new Font(null, Font.PLAIN, 20));
-
-        cmbTipo = new JComboBox<>(new String[]{"Administrador", "Gestor", "Recrutador", "Funcionario", "Candidato"});
-        cmbTipo.setBackground(new Color(50,50,50));
-        cmbTipo.setForeground(new Color(240,246,252));
-        cmbTipo.setFont(new Font(null, Font.PLAIN, 20));
-
-        panel.add(textNome);
         panel.add(textCpf);
-        panel.add(textLogin);
-        panel.add(textSenha);
-        panel.add(cmbTipo);
 
         return panel;
     }
@@ -201,7 +153,7 @@ public class CadastroUsuario extends JFrame {
         panel.setBackground(new Color(10,20,30));
         panel.setBounds(300,540,1280,120);
 
-        botaoCadastrar = new JButton("Cadastrar");
+        botaoCadastrar = new JButton("Editar");
 
         botaoCadastrar.setBounds(250,30,200,45);
         botaoCadastrar.setBackground(new Color(21,27,35));
@@ -212,7 +164,7 @@ public class CadastroUsuario extends JFrame {
 
         panel.add(botaoCadastrar);
 
-        botaoCadastrar.addActionListener(e -> cadastrarUsuario());
+        botaoCadastrar.addActionListener(e -> editarUsuario());
 
         return panel;
     }
