@@ -127,4 +127,10 @@ public class UsuarioService {
         repository.excluir(cpf);
     }
 
+    public List<Usuario> listarTodos() {
+        List<Usuario> lista = repository.listarTodos();
+//        return repository.listarTodos();
+
+        return lista;
+    }
 }

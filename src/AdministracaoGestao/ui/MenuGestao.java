@@ -61,7 +61,7 @@ public class MenuGestao extends JFrame {
     JButton botaoCadastrar;
     JButton botaoEditar;
     JButton botaoExcluir;
-    JButton botao4;
+    JButton botaoListar;
     JButton botaoPesquisar;
     JButton botao6;
 
@@ -113,13 +113,13 @@ public class MenuGestao extends JFrame {
 
         JPanel panel4 = new JPanel(new GridLayout(1, 1));
 
-        botao4 = new JButton("Listar");
-        botao4.setBackground(new Color(21,27,35));
-        botao4.setForeground(new Color(240,246,252));
-        botao4.setFocusable(false);
-        botao4.setFont(new Font("Roboto", Font.PLAIN, 17));
+        botaoListar = new JButton("Listar");
+        botaoListar.setBackground(new Color(21,27,35));
+        botaoListar.setForeground(new Color(240,246,252));
+        botaoListar.setFocusable(false);
+        botaoListar.setFont(new Font("Roboto", Font.PLAIN, 17));
 
-        panel4.add(botao4);
+        panel4.add(botaoListar);
     
         panel.add(panel4);
 
@@ -180,6 +180,7 @@ public class MenuGestao extends JFrame {
         botaoCadastrar.addActionListener(e -> abrir(new CadastroUsuario()));
         botaoEditar.addActionListener(e -> abrir(new ValidarCpfEditar()));
         botaoExcluir.addActionListener(e -> abrir(new ExcluiUsuario()));
+	    botaoListar.addActionListener(e -> abrir(new ListaUsuario()));
         botaoPesquisar.addActionListener(e -> abrir(new ValidarCpfPesquisar()));
         
     }
