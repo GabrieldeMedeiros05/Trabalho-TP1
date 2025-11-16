@@ -62,7 +62,7 @@ public class MenuGestao extends JFrame {
     JButton botaoEditar;
     JButton botaoExcluir;
     JButton botao4;
-    JButton botao5;
+    JButton botaoPesquisar;
     JButton botao6;
 
     public JPanel midPanel(){
@@ -125,13 +125,13 @@ public class MenuGestao extends JFrame {
 
         JPanel panel5 = new JPanel(new GridLayout(1, 1));
 
-        botao5 = new JButton("Pesquisar");
-        botao5.setBackground(new Color(21,27,35));
-        botao5.setForeground(new Color(240,246,252));
-        botao5.setFocusable(false);
-        botao5.setFont(new Font("Roboto", Font.PLAIN, 17));
+        botaoPesquisar = new JButton("Pesquisar");
+        botaoPesquisar.setBackground(new Color(21,27,35));
+        botaoPesquisar.setForeground(new Color(240,246,252));
+        botaoPesquisar.setFocusable(false);
+        botaoPesquisar.setFont(new Font("Roboto", Font.PLAIN, 17));
         
-        panel5.add(botao5);
+        panel5.add(botaoPesquisar);
     
         panel.add(panel5);
 
@@ -178,8 +178,9 @@ public class MenuGestao extends JFrame {
 
     private void configurarListeners() {
         botaoCadastrar.addActionListener(e -> abrir(new CadastroUsuario()));
-        botaoEditar.addActionListener(e -> abrir(new EditaUsuario()));
+        botaoEditar.addActionListener(e -> abrir(new ValidarCpfEditar()));
         botaoExcluir.addActionListener(e -> abrir(new ExcluiUsuario()));
+        botaoPesquisar.addActionListener(e -> abrir(new ValidarCpfPesquisar()));
         
     }
 

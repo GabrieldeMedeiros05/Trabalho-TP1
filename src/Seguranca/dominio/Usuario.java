@@ -52,6 +52,7 @@ public class Usuario extends Pessoa {
 
     // --- GETTERS (ORIGINAIS) ---
 
+//    public String getNome() {return nome;}
     public long getIdUsuario () { return this.idUsuario; }
     public String getLogin () { return this.login; }
     public String getSenha () { return this.senha; }

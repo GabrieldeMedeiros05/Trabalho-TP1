@@ -4,7 +4,15 @@ import Candidatura.excecoes.AutorizacaoException;
 import Candidatura.excecoes.RegraNegocioException;
 import Seguranca.persistencia.UsuarioRepository;
 import Seguranca.dominio.Usuario; // Classe de domínio do módulo de Segurança
+
+
+import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 
 public class UsuarioService {
 
@@ -80,4 +88,43 @@ public class UsuarioService {
 
         return repository.salvar(usuario);
     }
+
+    public Optional<Usuario> validarCpf(String cpf, String nome) {
+
+        Optional<Usuario> usuario = repository.buscarPorCpfPessoa(cpf);
+
+        if (usuario.isEmpty()) {
+            throw new RegraNegocioException("Usuario não existe");
+        }
+
+        if (!usuario.get().getNome().equals(nome)) {
+            throw new RegraNegocioException("Nome do usuário incompatível com o CPF");
+        }
+
+        return usuario;
+
+    }
+
+    public void editarUsuario(String nome, String login, String senha, String tipo, Optional<Usuario> usuario) {
+
+        repository.editar(nome, login, senha, tipo, usuario);
+    }
+
+    public void excluirUsuario(String cpf, String nome) {
+
+//        validarCpf(cpf, nome);
+
+        Optional<Usuario> usuario = repository.buscarPorCpfPessoa(cpf);
+
+        if (usuario.isEmpty()) {
+            throw new RegraNegocioException("Usuario não existe");
+        }
+
+        if (!usuario.get().getNome().equals(nome)) {
+            throw new RegraNegocioException("Nome do usuário incompatível com o CPF");
+        }
+
+        repository.excluir(cpf);
+    }
+
 }

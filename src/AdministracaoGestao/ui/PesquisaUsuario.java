@@ -1,27 +1,25 @@
 package AdministracaoGestao.ui;
 
-import Candidatura.excecoes.RegraNegocioException;
 import Seguranca.dominio.Usuario;
 import Seguranca.servico.UsuarioService;
 import main.AppConfig;
 
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 import java.util.Optional;
 
-
-public class EditaUsuario extends JFrame  {
+public class PesquisaUsuario extends JFrame {
 
     private final UsuarioService usuarioService = AppConfig.usuarioService();
 
-    JTextField textNome;
-    JTextField textCpf;
-    JTextField textLogin;
-    JTextField textSenha;
-    JComboBox<String> cmbTipo;
+    JLabel pesquisaNome;
+    JLabel pesquisaCpf;
+    JLabel pesquisaLogin;
+    JLabel pesquisaSenha;
+    JLabel pesquisaTipo;
     Optional<Usuario> usuario;
 
-    public EditaUsuario(Optional<Usuario> usuario) {
+    public PesquisaUsuario(Optional<Usuario> usuario) {
 
         this.usuario = usuario;
 
@@ -29,7 +27,7 @@ public class EditaUsuario extends JFrame  {
     }
 
     public void initComponets(){
-        setTitle("Editar de Usuário");
+        setTitle("Usuário Encontrado");
         setSize(1280,720);
         setLayout(null);
         setVisible(true);
@@ -44,35 +42,9 @@ public class EditaUsuario extends JFrame  {
         add(mainPanel());
     }
 
-    private void editarUsuario() {
-        String nome = textNome.getText().trim();
-        String login = textLogin.getText().trim();
-        String senha = new String(textSenha.getText().trim());
-        String tipo = (String) cmbTipo.getSelectedItem();
+    private void fecharUsuario() {
 
-        if (nome.isEmpty() & login.isEmpty() & senha.isEmpty() & tipo.equals(usuario.get().getTipo())) {
-            JOptionPane.showMessageDialog(this, "Nenhum campo alterado.", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-
-        try {
-            // Define o departamento baseado no tipo de usuário
-            String departamento = tipo.equals("RH") ? "RECRUTAMENTO" : "ADMINISTRACAO";
-
-            usuarioService.editarUsuario(nome, login, senha, tipo, usuario);
-
-            JOptionPane.showMessageDialog(this,
-                    "Usuário " + tipo + " editado com sucesso! Login: " + login,
-                    "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-
-            dispose();
-
-        } catch (RegraNegocioException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro de Regra de Negócio", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Erro ao editar: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-        }
+        dispose();
     }
 
     public JPanel mainPanel(){
@@ -94,7 +66,7 @@ public class EditaUsuario extends JFrame  {
         panel.setBackground(new Color(10,20,30));
         panel.setBounds(0,40,1280,100);
 
-        JLabel title = new JLabel("Editar de Usuário");
+        JLabel title = new JLabel("Usuário Encontrado");
 
         title.setBounds(450,30,800,45);
         title.setForeground(new Color(240,246,252));
@@ -107,7 +79,7 @@ public class EditaUsuario extends JFrame  {
 
     public JPanel midPanel(){
 
-        JPanel panel = new JPanel(new GridLayout(4, 1, 0, 20));
+        JPanel panel = new JPanel(new GridLayout(5, 1, 0, 20));
         panel.setBounds(80, 180, 150, 320);
         panel.setBackground(new Color(10,20,30));
 
@@ -132,6 +104,7 @@ public class EditaUsuario extends JFrame  {
         labelTipo.setFont(new Font("Roboto", Font.PLAIN, 20));
 
         panel.add(labelNome);
+        panel.add(labelCpf);
         panel.add(labelLogin);
         panel.add(labelSenha);
         panel.add(labelTipo);
@@ -141,37 +114,40 @@ public class EditaUsuario extends JFrame  {
 
     public JPanel midPanel2(){
 
-        JPanel panel = new JPanel(new GridLayout(4, 1, 0, 20));
+        JPanel panel = new JPanel(new GridLayout(5, 1, 0, 20));
         panel.setBounds(270, 180, 860, 320);
         panel.setBackground(new Color(10,20,30));
 
-        textNome = new JTextField(usuario.get().getNome());
-        textNome.setCaretColor(Color.green);
-        textNome.setBackground(new Color(50,50,50));
-        textNome.setForeground(new Color(240,246,252));
-        textNome.setFont(new Font(null, Font.PLAIN, 20));
+        pesquisaNome = new JLabel(usuario.get().getNome());
+        pesquisaNome.setBackground(new Color(50,50,50));
+        pesquisaNome.setForeground(new Color(240,246,252));
+        pesquisaNome.setFont(new Font(null, Font.PLAIN, 20));
 
-        textLogin = new JTextField(usuario.get().getLogin());
-        textLogin.setCaretColor(Color.green);
-        textLogin.setBackground(new Color(50,50,50));
-        textLogin.setForeground(new Color(240,246,252));
-        textLogin.setFont(new Font(null, Font.PLAIN, 20));
+        pesquisaCpf = new JLabel(usuario.get().getCpf_cnpj());
+        pesquisaCpf.setBackground(new Color(50,50,50));
+        pesquisaCpf.setForeground(new Color(240,246,252));
+        pesquisaCpf.setFont(new Font(null, Font.PLAIN, 20));
 
-        textSenha = new JTextField(usuario.get().getSenha());
-        textSenha.setCaretColor(Color.green);
-        textSenha.setBackground(new Color(50,50,50));
-        textSenha.setForeground(new Color(240,246,252));
-        textSenha.setFont(new Font(null, Font.PLAIN, 20));
+        pesquisaLogin = new JLabel(usuario.get().getLogin());
+        pesquisaLogin.setBackground(new Color(50,50,50));
+        pesquisaLogin.setForeground(new Color(240,246,252));
+        pesquisaLogin.setFont(new Font(null, Font.PLAIN, 20));
 
-        cmbTipo = new JComboBox<>(new String[]{"Administrador", "Gestor", "Recrutador", "Funcionario", "Candidato"});
-        cmbTipo.setBackground(new Color(50,50,50));
-        cmbTipo.setForeground(new Color(240,246,252));
-        cmbTipo.setFont(new Font(null, Font.PLAIN, 20));
+        pesquisaSenha = new JLabel(usuario.get().getSenha());
+        pesquisaSenha.setBackground(new Color(50,50,50));
+        pesquisaSenha.setForeground(new Color(240,246,252));
+        pesquisaSenha.setFont(new Font(null, Font.PLAIN, 20));
 
-        panel.add(textNome);
-        panel.add(textLogin);
-        panel.add(textSenha);
-        panel.add(cmbTipo);
+        pesquisaTipo = new JLabel(usuario.get().getTipo());
+        pesquisaTipo.setBackground(new Color(50,50,50));
+        pesquisaTipo.setForeground(new Color(240,246,252));
+        pesquisaTipo.setFont(new Font(null, Font.PLAIN, 20));
+
+        panel.add(pesquisaNome);
+        panel.add(pesquisaCpf);
+        panel.add(pesquisaLogin);
+        panel.add(pesquisaSenha);
+        panel.add(pesquisaTipo);
 
         return panel;
     }
@@ -184,7 +160,7 @@ public class EditaUsuario extends JFrame  {
         panel.setBackground(new Color(10,20,30));
         panel.setBounds(300,540,1280,120);
 
-        botaoCadastrar = new JButton("Editar");
+        botaoCadastrar = new JButton("Fecharr");
 
         botaoCadastrar.setBounds(250,30,200,45);
         botaoCadastrar.setBackground(new Color(21,27,35));
@@ -195,9 +171,8 @@ public class EditaUsuario extends JFrame  {
 
         panel.add(botaoCadastrar);
 
-        botaoCadastrar.addActionListener(e -> editarUsuario());
+        botaoCadastrar.addActionListener(e -> fecharUsuario());
 
         return panel;
     }
-
 }
