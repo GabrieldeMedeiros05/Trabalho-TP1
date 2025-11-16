@@ -1,0 +1,5 @@
+idUsuario;login;senha;tipo;nome;cpf_cnpj;status;departamento
+1;candidato;123;CANDIDATO;Candidato Teste;12345678900;ATIVO;CANDIDATURA
+2;rh;456;RH;Recrutador Teste;99999999900;ATIVO;RECRUTAMENTO
+3;Ativo;testeteste;Administrador;Fulano da Silva;12121212121;ATIVO;ADMINISTRACAO
+4;julio;juio;Administrador;Julio;12134356578;ATIVO;ADMINISTRACAO
