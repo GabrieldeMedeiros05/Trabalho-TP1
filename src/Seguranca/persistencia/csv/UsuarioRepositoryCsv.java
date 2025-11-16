@@ -1,6 +1,7 @@
 package Seguranca.persistencia.csv;
 
 import Candidatura.excecoes.PersistenciaException;
+import Candidatura.excecoes.RegraNegocioException;
 import Seguranca.persistencia.UsuarioRepository;
 import Seguranca.dominio.Usuario; // Seu domínio isolado
 
@@ -9,6 +10,10 @@ import java.nio.file.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
+
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.nio.file.Files;
 /**
  * Persistência CSV simples para Usuário (data/usuarios.csv).
  */
@@ -51,19 +56,212 @@ public class UsuarioRepositoryCsv implements UsuarioRepository {
     }
 
     @Override
-    public Usuario salvar(Usuario u) {
+    public Usuario salvar(Usuario usuario) {
         List<Usuario> todos = listarTodos();
 
-        todos.removeIf(x -> x.getIdUsuario() == u.getIdUsuario());
+        todos.removeIf(x -> x.getIdUsuario() == usuario.getIdUsuario());
 
-        if (u.getIdUsuario() == 0) {
+        if (usuario.getIdUsuario() == 0) {
             long novoId = todos.stream().mapToLong(Usuario::getIdUsuario).max().orElse(0) + 1;
-            u.setIdUsuario(novoId);
+            usuario.setIdUsuario(novoId);
         }
 
-        todos.add(u);
+        todos.add(usuario);
         escreverTodos(todos);
-        return u;
+        return usuario;
+    }
+
+    @Override
+    public void editar(String nome, String login, String senha, String tipo, Optional<Usuario> usuario) {
+
+        ArrayList<String> usuarios = new ArrayList<>();
+
+        File diretorio = new File("./");
+        String caminho =  diretorio.getAbsolutePath();
+        caminho = caminho.substring(0, caminho.length() - 1);
+        caminho = caminho + "data/usuarios.csv";
+
+
+        File arquivoUsuarios = new File(caminho);
+
+        try (Scanner myReader = new Scanner(arquivoUsuarios)) {
+            while (myReader.hasNextLine()) {
+                usuarios.add(myReader.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        arquivoUsuarios.delete();
+
+        try {
+            FileWriter myWriter = new FileWriter(caminho);
+            for (String elem : usuarios) {
+
+                String usuarioNovo = elem;
+
+                if (elem.contains(usuario.get().getCpf_cnpj())) {
+
+                    if (!nome.isEmpty() & !login.isEmpty() & !senha.isEmpty() & !tipo.isEmpty()) {
+                        usuarioNovo = elem.replace(usuario.get().getNome(), nome);
+                        usuarioNovo = usuarioNovo.replace(usuario.get().getLogin(), login);
+                        usuarioNovo = usuarioNovo.replace(usuario.get().getSenha(), senha);
+                        usuarioNovo = usuarioNovo.replace(usuario.get().getTipo(), tipo);
+                        myWriter.write(usuarioNovo);
+                        myWriter.write("\n");
+                        continue;
+                    }
+                    else if (!login.isEmpty() & !senha.isEmpty() & !tipo.isEmpty()) {
+                        usuarioNovo = elem.replace(usuario.get().getLogin(), login);
+                        usuarioNovo = usuarioNovo.replace(usuario.get().getSenha(), senha);
+                        usuarioNovo = usuarioNovo.replace(usuario.get().getTipo(), tipo);
+                        myWriter.write(usuarioNovo);
+                        myWriter.write("\n");
+                        continue;
+                    }
+                    else if (!nome.isEmpty() & !senha.isEmpty() & !tipo.isEmpty()) {
+                        usuarioNovo = elem.replace(usuario.get().getNome(), nome);
+                        usuarioNovo = usuarioNovo.replace(usuario.get().getSenha(), senha);
+                        usuarioNovo = usuarioNovo.replace(usuario.get().getTipo(), tipo);
+                        myWriter.write(usuarioNovo);
+                        myWriter.write("\n");
+                        continue;
+                    }
+                    else if (!nome.isEmpty() & !login.isEmpty() & !tipo.isEmpty()) {
+                        usuarioNovo = elem.replace(usuario.get().getNome(), nome);
+                        usuarioNovo = usuarioNovo.replace(usuario.get().getLogin(), login);
+                        usuarioNovo = usuarioNovo.replace(usuario.get().getTipo(), tipo);
+                        myWriter.write(usuarioNovo);
+                        myWriter.write("\n");
+                        continue;
+                    }
+                    if (!nome.isEmpty() & !login.isEmpty() & !senha.isEmpty()) {
+                        usuarioNovo = elem.replace(usuario.get().getNome(), nome);
+                        usuarioNovo = usuarioNovo.replace(usuario.get().getLogin(), login);
+                        usuarioNovo = usuarioNovo.replace(usuario.get().getSenha(), senha);
+                        myWriter.write(usuarioNovo);
+                        myWriter.write("\n");
+                        continue;
+                    }
+                    if (!nome.isEmpty() & !login.isEmpty()) {
+                        usuarioNovo = elem.replace(usuario.get().getNome(), nome);
+                        usuarioNovo = usuarioNovo.replace(usuario.get().getLogin(), login);
+                        myWriter.write(usuarioNovo);
+                        myWriter.write("\n");
+                        continue;
+                    }
+                    else if (!nome.isEmpty() & !senha.isEmpty()) {
+                        usuarioNovo = elem.replace(usuario.get().getNome(), nome);
+                        usuarioNovo = usuarioNovo.replace(usuario.get().getSenha(), senha);
+                        myWriter.write(usuarioNovo);
+                        myWriter.write("\n");
+                        continue;
+                    }
+                    else if (!nome.isEmpty() & !tipo.isEmpty()) {
+                        usuarioNovo = elem.replace(usuario.get().getNome(), nome);
+                        usuarioNovo = usuarioNovo.replace(usuario.get().getTipo(), tipo);
+                        myWriter.write(usuarioNovo);
+                        myWriter.write("\n");
+                        continue;
+                    }
+                    else if (!login.isEmpty() & senha.isEmpty()) {
+                        usuarioNovo = elem.replace(usuario.get().getLogin(), login);
+                        usuarioNovo = usuarioNovo.replace(usuario.get().getSenha(), senha);
+                        myWriter.write(usuarioNovo);
+                        myWriter.write("\n");
+                        continue;
+                    }
+                    else if (!login.isEmpty() & tipo.isEmpty()) {
+                        usuarioNovo = elem.replace(usuario.get().getLogin(), login);
+                        usuarioNovo = usuarioNovo.replace(usuario.get().getTipo(), tipo);
+                        myWriter.write(usuarioNovo);
+                        myWriter.write("\n");
+                        continue;
+                    }
+                    else if (!senha.isEmpty() & !tipo.isEmpty()) {
+                        usuarioNovo = elem.replace(usuario.get().getSenha(), senha);
+                        usuarioNovo = usuarioNovo.replace(usuario.get().getTipo(), tipo);
+                        myWriter.write(usuarioNovo);
+                        myWriter.write("\n");
+                        continue;
+                    }
+                    else if (!nome.isEmpty()) {
+                        usuarioNovo = elem.replace(usuario.get().getNome(), nome);
+                        myWriter.write(usuarioNovo);
+                        myWriter.write("\n");
+                        continue;
+                    }
+                    else if (!login.isEmpty()) {
+                        usuarioNovo = elem.replace(usuario.get().getLogin(), login);
+                        myWriter.write(usuarioNovo);
+                        myWriter.write("\n");
+                        continue;
+                    }
+                    else if (!senha.isEmpty()) {
+                        usuarioNovo = elem.replace(usuario.get().getSenha(), senha);
+                        myWriter.write(usuarioNovo);
+                        myWriter.write("\n");
+                        continue;
+                    }
+                    else if (!tipo.isEmpty()) {
+                        usuarioNovo = elem.replace(usuario.get().getTipo(), tipo);
+                        myWriter.write(usuarioNovo);
+                        myWriter.write("\n");
+                        continue;
+                    }
+                }
+                
+                myWriter.write(usuarioNovo);
+                myWriter.write("\n");
+            }
+
+            myWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void excluir(String cpf) {
+
+        ArrayList<String> usuarios = new ArrayList<>();
+
+        File diretorio = new File("./");
+        String caminho =  diretorio.getAbsolutePath();
+        caminho = caminho.substring(0, caminho.length() - 1);
+        caminho = caminho + "data/usuarios.csv";
+
+
+        File arquivoUsuarios = new File(caminho);
+
+        try (Scanner myReader = new Scanner(arquivoUsuarios)) {
+            while (myReader.hasNextLine()) {
+                usuarios.add(myReader.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        arquivoUsuarios.delete();
+
+        try {
+            FileWriter myWriter = new FileWriter(caminho);
+            for (String elem : usuarios) {
+
+                if (elem.contains(cpf)) {
+                    continue;
+                }
+
+                myWriter.write(elem);
+                myWriter.write("\n");
+            }
+
+            myWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

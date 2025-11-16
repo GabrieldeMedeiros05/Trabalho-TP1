@@ -2,10 +2,9 @@ package main.ui;
 
 import Candidatura.ui.MenuCandidatura;
 import Financeiro.ui.TelaFinanceiro;
-
-
-import javax.swing.*;
+import AdministracaoGestao.ui.MenuGestao;
 import java.awt.*;
+import javax.swing.*;
 
 /**
  * Menu principal da aplicação.
@@ -36,7 +35,7 @@ public class MenuPrincipal extends JFrame {
         btnRecrutamento = new JButton("3. Recrutamento e Candidatura");
         btnCadastrarUsuario = new JButton("4. Cadastrar Novo Usuário (RH/Admin)"); // NOVO
 
-        btnAdminGestao.setEnabled(false);
+        //btnAdminGestao.setEnabled(false);
 
         grid.add(btnAdminGestao);
         grid.add(btnFinanceiro);
@@ -58,6 +57,7 @@ public class MenuPrincipal extends JFrame {
     }
 
     private void configurarListeners() {
+        btnAdminGestao.addActionListener(e -> abrirModuloGestao());
         btnFinanceiro.addActionListener(e -> abrirModuloFinanceiro());
         btnRecrutamento.addActionListener(e -> abrirModuloCandidatura());
         btnCadastrarUsuario.addActionListener(e -> abrirCadastroUsuario()); // NOVO LISTENER
@@ -76,6 +76,11 @@ public class MenuPrincipal extends JFrame {
 
     private void abrirModuloFinanceiro() {
         TelaFinanceiro tela = new TelaFinanceiro();
+        tela.setVisible(true);
+    }
+
+    private void abrirModuloGestao() {
+        MenuGestao tela = new MenuGestao();
         tela.setVisible(true);
     }
 }
