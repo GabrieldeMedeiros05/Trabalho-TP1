@@ -3,6 +3,8 @@ package ui;
 import Candidatura.ui.MenuCandidatura;
 import Financeiro.ui.TelaFinanceiro;
 import AdministracaoGestao.ui.MenuGestao;
+import recrutamento.ui.TelaMenuRecrutamento;
+
 import java.awt.*;
 import javax.swing.*;
 
@@ -13,8 +15,8 @@ public class MenuPrincipal extends JFrame {
 
     private JButton btnAdminGestao;
     private JButton btnFinanceiro;
-    private JButton btnRecrutamento;
-
+    private JButton btnCandidatura;
+    private JButton btnRecrutamento; // NOVO CAMPO
     private JButton sairButton;
 
     public MenuPrincipal() {
@@ -30,15 +32,17 @@ public class MenuPrincipal extends JFrame {
         JPanel grid = new JPanel(new GridLayout(5, 1, 15, 15));
         grid.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
 
-        btnAdminGestao = new JButton("1. Administração e Gestão (Em Construção)");
+        btnAdminGestao = new JButton("1. Módulo Administração e Gestão");
         btnFinanceiro = new JButton("2. Módulo Financeiro");
-        btnRecrutamento = new JButton("3. Recrutamento e Candidatura");
+        btnCandidatura = new JButton("3. Módulo Candidatura");
+        btnRecrutamento = new JButton("4. Módulo Recrutamento");
 
 
         //btnAdminGestao.setEnabled(false);
 
         grid.add(btnAdminGestao);
         grid.add(btnFinanceiro);
+        grid.add(btnCandidatura);
         grid.add(btnRecrutamento);
 
 
@@ -59,7 +63,8 @@ public class MenuPrincipal extends JFrame {
     private void configurarListeners() {
         btnAdminGestao.addActionListener(e -> abrirModuloGestao());
         btnFinanceiro.addActionListener(e -> abrirModuloFinanceiro());
-        btnRecrutamento.addActionListener(e -> abrirModuloCandidatura());
+        btnCandidatura.addActionListener(e -> abrirModuloCandidatura());
+        btnRecrutamento.addActionListener(e -> abrirModuloRecrutamento());
 
         sairButton.addActionListener(e -> dispose());
     }
@@ -77,6 +82,11 @@ public class MenuPrincipal extends JFrame {
 
     private void abrirModuloGestao() {
         MenuGestao tela = new MenuGestao();
+        tela.setVisible(true);
+    }
+
+    private void abrirModuloRecrutamento() {
+        TelaMenuRecrutamento tela = new TelaMenuRecrutamento();
         tela.setVisible(true);
     }
 }

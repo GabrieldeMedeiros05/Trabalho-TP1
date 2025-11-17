@@ -1,4 +1,4 @@
-package recrutamento.dominio;
+package Candidatura.dominio;
 
 /**
  * Representa o usuário do tipo Recrutador.
