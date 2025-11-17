@@ -11,8 +11,6 @@ public class MenuCandidatura extends JFrame {
     private JButton btnCandidatosCadastrar;
     private JButton btnCandidatosListar;
     private JButton btnCandidaturaRealizar;
-    private JButton btnCandidaturaListar;
-    private JButton btnCandidaturaStatus; // Adicionado
     private JButton sairButton;
 
     public MenuCandidatura() {
@@ -30,14 +28,11 @@ public class MenuCandidatura extends JFrame {
         btnCandidatosCadastrar = new JButton("Candidatos – Cadastrar");
         btnCandidatosListar = new JButton("Candidatos – Listar e Consultar");
         btnCandidaturaRealizar = new JButton("Candidatura – Realizar");
-        btnCandidaturaListar = new JButton("Candidaturas – Listar Todas");
-        btnCandidaturaStatus = new JButton("Candidaturas – Gerir Status");
+
 
         grid.add(btnCandidatosCadastrar);
         grid.add(btnCandidatosListar);
         grid.add(btnCandidaturaRealizar);
-        grid.add(btnCandidaturaListar);
-        grid.add(btnCandidaturaStatus);
 
         add(grid, BorderLayout.CENTER);
 
@@ -62,7 +57,7 @@ public class MenuCandidatura extends JFrame {
         btnCandidatosCadastrar.addActionListener(e -> abrir(new TelaCadastroCandidato()));
         btnCandidatosListar.addActionListener(e -> abrir(new TelaListarCandidatos()));
         btnCandidaturaRealizar.addActionListener(e -> abrir(new TelaRealizarCandidatura()));
-        btnCandidaturaListar.addActionListener(e -> abrir(new TelaListarCandidaturas()));
+
         sairButton.addActionListener(e -> dispose());
     }
 

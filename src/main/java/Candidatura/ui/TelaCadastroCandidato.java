@@ -1,6 +1,7 @@
 package Candidatura.ui;
 
 import Candidatura.dominio.Candidato;
+import Candidatura.excecoes.RegraNegocioException;
 import Candidatura.servico.CandidaturaService;
 import Seguranca.servico.UsuarioService; // Importa o serviço de segurança
 import utils.AppConfig; // Importa a configuração global
@@ -109,6 +110,9 @@ public class TelaCadastroCandidato extends JFrame {
         }
 
         try {
+            // --- NOVO PASSO: VALIDAÇÃO DO CPF ---
+            candidaturaService.validarCpf(cpf); // Lança RegraNegocioException se inválido
+
             // 1. Cria e salva o Candidato (Pessoa)
             Candidato c = new Candidato(cpf, nome, email);
             if (!telefone.isEmpty()) c.setTelefone(telefone);
@@ -119,13 +123,16 @@ public class TelaCadastroCandidato extends JFrame {
             candidaturaService.salvarCandidato(c);
 
             // 2. Cria e salva o Usuário associado ao CPF (login/senha)
-            // O service usará o CPF do candidato para linkar com os dados salvos no passo 1.
             usuarioService.criarUsuarioCandidato(login, senha, cpf);
 
             JOptionPane.showMessageDialog(this, "Candidato e Usuário salvos com sucesso. Use o login/senha para acessar!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             dispose();
 
+        } catch (RegraNegocioException ex) {
+            // Captura erros de validação (Regra de Negócio/CPF)
+            JOptionPane.showMessageDialog(this, "Falha no Cadastro: " + ex.getMessage(), "Erro de Validação", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
+            // Captura erros de Persistência ou outros
             JOptionPane.showMessageDialog(this, "Erro ao salvar: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
