@@ -9,6 +9,8 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.Optional;
 
+import static utils.Constantes.COR_DE_FUNDO;
+
 
 public class EditaUsuario extends JFrame  {
 
@@ -78,7 +80,7 @@ public class EditaUsuario extends JFrame  {
     public JPanel mainPanel(){
 
         JPanel panel = new JPanel(null);
-        panel.setBackground(new Color(10,20,30));
+        panel.setBackground(COR_DE_FUNDO);
 
         panel.add(upPanel());
         panel.add(midPanel());
@@ -91,7 +93,7 @@ public class EditaUsuario extends JFrame  {
     public JPanel upPanel(){
 
         JPanel panel = new JPanel(null);
-        panel.setBackground(new Color(10,20,30));
+        panel.setBackground(COR_DE_FUNDO);
         panel.setBounds(0,40,1280,100);
 
         JLabel title = new JLabel("Editar de Usuário");
@@ -109,7 +111,7 @@ public class EditaUsuario extends JFrame  {
 
         JPanel panel = new JPanel(new GridLayout(4, 1, 0, 20));
         panel.setBounds(80, 180, 150, 320);
-        panel.setBackground(new Color(10,20,30));
+        panel.setBackground(COR_DE_FUNDO);
 
         JLabel labelNome = new JLabel("Nome");
         labelNome.setForeground(new Color(240,246,252));
@@ -143,7 +145,7 @@ public class EditaUsuario extends JFrame  {
 
         JPanel panel = new JPanel(new GridLayout(4, 1, 0, 20));
         panel.setBounds(270, 180, 860, 320);
-        panel.setBackground(new Color(10,20,30));
+        panel.setBackground(COR_DE_FUNDO);
 
         textNome = new JTextField(usuario.get().getNome());
         textNome.setCaretColor(Color.green);
@@ -181,7 +183,7 @@ public class EditaUsuario extends JFrame  {
     public JPanel lowerPanel(){
 
         JPanel panel = new JPanel(null);
-        panel.setBackground(new Color(10,20,30));
+        panel.setBackground(COR_DE_FUNDO);
         panel.setBounds(300,540,1280,120);
 
         botaoCadastrar = new JButton("Editar");

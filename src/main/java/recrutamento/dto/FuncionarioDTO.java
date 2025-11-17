@@ -2,7 +2,7 @@ package recrutamento.dto;
 
 import recrutamento.dominio.RegimeContratacao;
 
-public class    FuncionarioDTO {
+public class FuncionarioDTO {
 
     private String cpf;
     private String cargo;

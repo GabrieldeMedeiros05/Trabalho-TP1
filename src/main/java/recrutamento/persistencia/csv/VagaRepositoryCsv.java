@@ -6,9 +6,13 @@ import recrutamento.dominio.Vaga;
 import recrutamento.excecoes.PersistenciaException;
 import recrutamento.persistencia.VagaRepository;
 
-import java.io.*;
-import java.nio.file.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class VagaRepositoryCsv implements VagaRepository {

@@ -1,5 +1,6 @@
 package recrutamento.servico;
 
+import Seguranca.dominio.Usuario;
 import recrutamento.dominio.Contratacao;
 import recrutamento.dominio.Entrevista;
 import recrutamento.dominio.RegimeContratacao;
@@ -14,7 +15,6 @@ import recrutamento.interfaces.IFinanceiroService;
 import recrutamento.persistencia.ContratacaoRepository;
 import recrutamento.persistencia.EntrevistaRepository;
 import recrutamento.persistencia.VagaRepository;
-import Seguranca.dominio.Usuario;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

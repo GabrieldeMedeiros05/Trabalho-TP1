@@ -1,9 +1,9 @@
 package Financeiro;
 
-import recrutamento.dto.FuncionarioDTO;
-import recrutamento.dominio.RegimeContratacao;
-import recrutamento.interfaces.IFinanceiroService;
 
+import recrutamento.interfaces.IFinanceiroService;
+import recrutamento.dominio.RegimeContratacao;
+import recrutamento.dto.FuncionarioDTO;
 /**
  * Adapter que integra o módulo Recrutamento com o módulo Financeiro.
  *-

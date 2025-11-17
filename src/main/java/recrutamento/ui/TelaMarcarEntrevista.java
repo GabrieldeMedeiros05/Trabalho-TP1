@@ -1,7 +1,7 @@
 package recrutamento.ui;
 
-import recrutamento.dto.CandidaturaDTO;
 import recrutamento.dominio.Entrevista;
+import recrutamento.dto.CandidaturaDTO;
 import recrutamento.excecoes.AutorizacaoException;
 import recrutamento.excecoes.RegraNegocioException;
 import recrutamento.servico.RecrutamentoService;

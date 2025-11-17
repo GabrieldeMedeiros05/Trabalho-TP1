@@ -2,9 +2,7 @@ package recrutamento.ui;
 
 import Candidatura.persistencia.CandidaturaRepository;
 import Candidatura.persistencia.csv.CandidaturaRepositoryCsv;
-
 import Financeiro.FinanceiroServiceAdapter;
-
 import recrutamento.integracao.CandidaturaServiceAdapter;
 import recrutamento.interfaces.ICandidaturaService;
 import recrutamento.interfaces.IFinanceiroService;
