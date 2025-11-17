@@ -23,9 +23,6 @@ public class TelaMenuRecrutamento extends JFrame {
         Map<String, Supplier<JFrame>> rotas = new LinkedHashMap<>();
         rotas.put("Vagas - Listar/Filtrar", TelaListarVagas::new);
         rotas.put("Vagas - Cadastrar/Editar", TelaCadastroVaga::new);
-        rotas.put("Candidatos - Listar", TelaListarCandidatos::new);
-        rotas.put("Candidatos - Cadastrar", TelaCadastroCandidato::new);
-        rotas.put("Candidatura - Realizar", TelaRealizarCandidatura::new);
         rotas.put("Entrevistas - Marcar", TelaMarcarEntrevista::new);
         rotas.put("Contratação - Solicitar", TelaSolicitarContratacao::new);
         rotas.put("Contratação - Consultar", TelaConsultarContratacoes::new);
