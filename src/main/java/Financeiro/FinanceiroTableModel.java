@@ -1,17 +1,21 @@
 package Financeiro;
 
-import Seguranca.dominio.Funcionario;
-
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
-public class FuncionarioTableModel extends AbstractTableModel {
+import Seguranca.dominio.Funcionario;
 
+
+public class FinanceiroTableModel extends AbstractTableModel {
 
     private List<Funcionario> funcionarios;
-    private String[] colunas = {"Matrícula", "Nome", "Cargo", "Departamento", "Status", "Tipo", "Salário Base", "Salário Líquido", "Impostos Retidos"};
+    private String[] colunas = {
+            "Matrícula", "Nome", "Cargo", "Departamento", "Status", "Tipo",
+            "Salário Base", "Salário Líquido", "Impostos Retidos", "Vale Alimentação",
+            "Vale Refeição", "Isento de Impostos"
+    };
 
-    public FuncionarioTableModel(List<Funcionario> dados) {
+    public FinanceiroTableModel(List<Funcionario> dados) {
         this.funcionarios = dados;
     }
 
@@ -38,7 +42,6 @@ public class FuncionarioTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Funcionario f = funcionarios.get(rowIndex);
-
         switch (columnIndex) {
             case 0: return f.getMatricula();
             case 1: return f.getNome();
@@ -49,6 +52,10 @@ public class FuncionarioTableModel extends AbstractTableModel {
             case 6: return String.format("R$ %.2f", f.getSalarioBase());
             case 7: return String.format("R$ %.2f", f.calculaSalarioLiquido());
             case 8: return String.format("R$ %.2f", f.getImposto());
+            case 9: return f.getValeTransporteSn();
+            case 10: return f.getValeAlimentacaoSn();
+            case 11: return f.getIsentoImpostosSn();
+
             default: return null;
         }
     }

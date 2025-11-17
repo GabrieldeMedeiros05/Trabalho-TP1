@@ -210,6 +210,19 @@ public class Funcionario extends Pessoa {
         this.isentoImpostos = isentoImpostos;
     }
 
+    public String getValeTransporteSn() {
+        if (valeTransporte) {return "Sim";}
+        return "Nao";
+    }
+    public String getValeAlimentacaoSn() {
+        if (valeAlimentacao) {return "Sim";}
+        return "Nao";
+    }
+    public String getIsentoImpostosSn() {
+        if (isentoImpostos) {return "Sim";}
+        return "Nao";
+    }
+
     public float calculaSalarioLiquido() {
         float salarioLiquido = getSalarioBase();
         if (getStatus().equalsIgnoreCase("pj")) {
