@@ -2,7 +2,7 @@ package AdministracaoGestao.ui;
 
 import Seguranca.dominio.Usuario;
 import Seguranca.servico.UsuarioService;
-import main.AppConfig;
+import utils.AppConfig;
 
 import javax.swing.*;
 import java.awt.*;

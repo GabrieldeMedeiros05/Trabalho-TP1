@@ -3,7 +3,7 @@ package ui;
 import Seguranca.dominio.Usuario;
 import Candidatura.excecoes.RegraNegocioException;
 import Seguranca.servico.UsuarioService;
-import main.AppConfig; // Importa a configuração global de segurança
+import utils.AppConfig; // Importa a configuração global de segurança
 
 import javax.swing.*;
 import java.awt.*;

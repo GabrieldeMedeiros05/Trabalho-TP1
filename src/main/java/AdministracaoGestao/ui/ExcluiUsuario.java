@@ -2,7 +2,7 @@ package AdministracaoGestao.ui;
 
 import Candidatura.excecoes.RegraNegocioException;
 import Seguranca.servico.UsuarioService;
-import main.AppConfig;
+import utils.AppConfig;
 
 import java.awt.*;
 import javax.swing.*;

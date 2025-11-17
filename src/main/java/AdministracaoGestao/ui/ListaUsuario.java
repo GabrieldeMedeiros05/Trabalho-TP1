@@ -3,7 +3,7 @@ package AdministracaoGestao.ui;
 import AdministracaoGestao.modelos.UsuariosTableModel;
 import Seguranca.dominio.Usuario;
 import Seguranca.servico.UsuarioService;
-import main.AppConfig;
+import utils.AppConfig;
 import utils.Constantes;
 
 import javax.swing.*;
