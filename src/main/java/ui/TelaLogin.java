@@ -66,7 +66,7 @@ public class TelaLogin extends JFrame {
                 new MenuCandidato(usuario.getCpf_cnpj()).setVisible(true);
             } else {
                 // REDIRECIONA PARA O MENU GERAL (RH/ADMIN)
-                new MenuPrincipal().setVisible(true);
+                new MenuPrincipal(usuario).setVisible(true);
             }
 
         } catch (AutorizacaoException ex) {

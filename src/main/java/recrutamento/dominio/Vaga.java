@@ -11,7 +11,8 @@ import java.util.Objects;
  *  - Financeiro: fechamento ao efetivar contratação
  */
 public class Vaga {
-    private final String id;                 // UUID (chave forte)
+    private final String id;
+    private String codigo;// UUID (chave forte)
     private String cargo;
     private String departamento;
     private double salarioBase;
@@ -25,7 +26,7 @@ public class Vaga {
     private String recrutadorResponsavelCpf;         // TODO: integrar com módulo Administração/Gestão
 
     public Vaga(String id, String cargo, String departamento, double salarioBase,
-                String requisitos, RegimeContratacao regime, String gestorResponsavelCpf) {
+                String requisitos, RegimeContratacao regime, String gestorResponsavelCpf, String codigo) {
         this.id = Objects.requireNonNull(id);
         this.cargo = Objects.requireNonNull(cargo);
         this.departamento = Objects.requireNonNull(departamento);
@@ -33,6 +34,7 @@ public class Vaga {
         this.requisitos = requisitos;
         this.regime = Objects.requireNonNull(regime);
         this.gestorResponsavelCpf = Objects.requireNonNull(gestorResponsavelCpf);
+        this.codigo = codigo;
     }
 
     // Regras simples
@@ -58,4 +60,6 @@ public class Vaga {
     public void setRecrutadorResponsavelCpf(String recrutadorResponsavelCpf) {
         this.recrutadorResponsavelCpf = recrutadorResponsavelCpf;
     }
+
+    public String getCodigo() { return codigo; }
 }

@@ -11,7 +11,7 @@ public class TelaMenuRecrutamento extends JFrame {
         setTitle("Recrutamento - Menu");
         setSize(480, 420);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
         JLabel titulo = new JLabel("Módulo de Recrutamento", SwingConstants.CENTER);
@@ -23,6 +23,9 @@ public class TelaMenuRecrutamento extends JFrame {
         Map<String, Supplier<JFrame>> rotas = new LinkedHashMap<>();
         rotas.put("Vagas - Listar/Filtrar", TelaListarVagas::new);
         rotas.put("Vagas - Cadastrar/Editar", TelaCadastroVaga::new);
+        rotas.put("Candidatos - Listar", TelaListarCandidatos::new);
+        rotas.put("Candidatos - Cadastrar", TelaCadastroCandidato::new);
+        rotas.put("Candidatura - Realizar", TelaRealizarCandidatura::new);
         rotas.put("Entrevistas - Marcar", TelaMarcarEntrevista::new);
         rotas.put("Contratação - Solicitar", TelaSolicitarContratacao::new);
         rotas.put("Contratação - Consultar", TelaConsultarContratacoes::new);
