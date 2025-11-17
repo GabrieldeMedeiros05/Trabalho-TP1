@@ -3,3 +3,8 @@ idUsuario;login;senha;tipo;nome;cpf_cnpj;status;departamento
 2;rh;456;RH;Recrutador Teste;99999999900;ATIVO;RECRUTAMENTO
 3;Ativo;testeteste;Administrador;Fulano da Silva;12121212121;ATIVO;ADMINISTRACAO
 4;julio;juio;Administrador;Julio;12134356578;ATIVO;ADMINISTRACAO
+5;Lucas;Gestor;Lucas;11231141123;ATIVO;GESTOR;
+6;FER;789;Gestor;Fer;78077460178;ATIVO;ADMINISTRACAO
+7;marcio;456;Recrutador;Marcio;00100200333;ATIVO;ADMINISTRACAO
+8;luisfelipe;12345;CANDIDATO;;;;
+9;marisa;123;CANDIDATO;;;;

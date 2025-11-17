@@ -1,10 +1,12 @@
 package recrutamento.ui;
 
+import recrutamento.servico.RecrutamentoService;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class TelaConsultarContratacoes extends JFrame {
-    public TelaConsultarContratacoes() {
+    public TelaConsultarContratacoes(RecrutamentoService service) {
         setTitle("Contratações - Consultar");
         setSize(740, 480);
         setLocationRelativeTo(null);

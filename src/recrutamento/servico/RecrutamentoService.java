@@ -9,11 +9,12 @@ import recrutamento.dto.CandidaturaDTO;
 import recrutamento.dto.FuncionarioDTO;
 import recrutamento.excecoes.AutorizacaoException;
 import recrutamento.excecoes.RegraNegocioException;
+import recrutamento.interfaces.ICandidaturaService;
+import recrutamento.interfaces.IFinanceiroService;
 import recrutamento.persistencia.ContratacaoRepository;
 import recrutamento.persistencia.EntrevistaRepository;
 import recrutamento.persistencia.VagaRepository;
-import recrutamento.interfaces.ICandidaturaService;
-import recrutamento.interfaces.IFinanceiroService;
+import Seguranca.dominio.Usuario;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -38,9 +39,9 @@ public class RecrutamentoService {
     private final ICandidaturaService candidaturaService;
     private final IFinanceiroService financeiroService;
 
-    // Simulação de sessão (até integração com módulo Administração)
-    private String usuarioCpf;
-    private String perfil; // "GESTOR" ou "RECRUTADOR"
+    // Dados do usuário logado (via módulo Segurança)
+    private String usuarioCpf;   // CPF do usuário logado
+    private String perfil;       // "GESTOR", "RECRUTADOR" ou "OUTRO"
 
     public RecrutamentoService(VagaRepository vagaRepo,
                                EntrevistaRepository entRepo,
@@ -55,17 +56,36 @@ public class RecrutamentoService {
     }
 
     //====================================================
-    // CONTROLE SIMPLIFICADO DE SESSÃO
+    // INTEGRAÇÃO COM MÓDULO DE SEGURANÇA
     //====================================================
 
-    public void logarComoGestor(String cpf) {
-        this.usuarioCpf = cpf;
-        this.perfil = "GESTOR";
-    }
+    /**
+     * Configura o usuário logado a partir do módulo de Segurança.
+     * Usado pelo MenuPrincipal antes de abrir o módulo Recrutamento.
+     */
+    public void configurarUsuarioLogado(Usuario usuario) {
+        if (usuario == null) {
+            this.usuarioCpf = null;
+            this.perfil = null;
+            return;
+        }
 
-    public void logarComoRecrutador(String cpf) {
-        this.usuarioCpf = cpf;
-        this.perfil = "RECRUTADOR";
+        // Ajuste conforme os getters reais de Usuario
+        this.usuarioCpf = usuario.getCpf_cnpj();
+
+        String tipo = usuario.getTipo(); // ex.: "GESTOR_RH", "RECRUTADOR_RH"
+        if (tipo != null) {
+            String t = tipo.toUpperCase();
+            if (t.contains("GESTOR")) {
+                this.perfil = "GESTOR";
+            } else if (t.contains("RECRUTADOR")) {
+                this.perfil = "RECRUTADOR";
+            } else {
+                this.perfil = "OUTRO";
+            }
+        } else {
+            this.perfil = "OUTRO";
+        }
     }
 
     private void exigirGestor() {
@@ -96,8 +116,29 @@ public class RecrutamentoService {
                           RegimeContratacao regime) {
         exigirGestor();
         String id = UUID.randomUUID().toString();
-        Vaga v = new Vaga(id, cargo, departamento, salarioBase, requisitos, regime, usuarioCpf);
+        String codigo = gerarCodigoAmigavel();
+
+        Vaga v = new Vaga(
+                id,
+                cargo,
+                departamento,
+                salarioBase,
+                requisitos,
+                regime,
+                usuarioCpf,   // gestorResponsavelCpf
+                codigo
+        );
+
         return vagaRepo.salvar(v);
+    }
+
+    /**
+     * Gera um código numérico “amigável” de 6 dígitos para a vaga.
+     * Obs.: simples, pode ter colisão. Em um sistema real, validaríamos unicidade.
+     */
+    private String gerarCodigoAmigavel() {
+        int numero = new Random().nextInt(900000) + 100000; // de 100000 a 999999
+        return String.valueOf(numero);
     }
 
     /**
@@ -218,21 +259,59 @@ public class RecrutamentoService {
     //====================================================
 
     /**
-     * Agenda uma entrevista para uma candidatura existente.
-     * Recrutador apenas da vaga correspondente pode agendar.
+     * Lista entrevistas de uma candidatura.
+     */
+    public List<Entrevista> listarEntrevistasDaCandidatura(String candidaturaId) {
+        return entRepo.listarPorCandidatura(candidaturaId);
+    }
+
+    /**
+     * Retorna uma entrevista pelo ID ou null se não encontrar.
+     */
+    public Entrevista buscarEntrevistaPorId(String entrevistaId) {
+        return entRepo.buscarPorId(entrevistaId).orElse(null);
+    }
+
+    /**
+     * Agenda uma entrevista (versão curta, compatibilidade).
      */
     public Entrevista agendarEntrevista(String candidaturaId,
                                         LocalDateTime dataHora,
                                         String avaliador) {
+        return agendarEntrevista(candidaturaId, dataHora, avaliador, 0.0, null);
+    }
+
+    /**
+     * Agenda uma entrevista (compatível), com nota mas sem parecer explícito.
+     */
+    public Entrevista agendarEntrevista(String candidaturaId,
+                                        LocalDateTime dataHora,
+                                        String avaliador,
+                                        double nota) {
+        return agendarEntrevista(candidaturaId, dataHora, avaliador, nota, null);
+    }
+
+    /**
+     * Agenda uma entrevista (versão completa), com nota e parecer.
+     * Permitido apenas para o recrutador responsável pela vaga.
+     */
+    public Entrevista agendarEntrevista(String candidaturaId,
+                                        LocalDateTime dataHora,
+                                        String avaliador,
+                                        double nota,
+                                        String parecer) {
 
         CandidaturaDTO c = candidaturaService.buscarPorId(candidaturaId);
         if (c == null) {
             throw new RegraNegocioException("Candidatura não encontrada.");
         }
 
-        Vaga v = vagaRepo.buscarPorId(c.getVagaId())
-                .orElseThrow(() -> new RegraNegocioException("Vaga não encontrada."));
+        Vaga v = buscarVagaDaCandidatura(c);
+        if (v == null) {
+            throw new RegraNegocioException("Vaga não encontrada para a candidatura selecionada.");
+        }
 
+        // Apenas o recrutador responsável pode agendar
         exigirRecrutadorDaVaga(v);
 
         Entrevista e = new Entrevista(
@@ -242,14 +321,207 @@ public class RecrutamentoService {
                 avaliador
         );
 
+        // registra nota + parecer
+        e.registrarAvaliacao(nota, parecer);
+
         return entRepo.salvar(e);
     }
 
     /**
-     * Lista entrevistas de uma candidatura.
+     * Atualiza os dados de uma entrevista existente (data, avaliador, nota).
+     * Versão de compatibilidade (sem parecer explícito).
      */
-    public List<Entrevista> listarEntrevistasDaCandidatura(String candidaturaId) {
-        return entRepo.listarPorCandidatura(candidaturaId);
+    public Entrevista atualizarEntrevista(String entrevistaId,
+                                          LocalDateTime dataHora,
+                                          String avaliador,
+                                          double nota) {
+        return atualizarEntrevista(entrevistaId, dataHora, avaliador, nota, null);
+    }
+
+    /**
+     * Atualiza os dados de uma entrevista existente (data, avaliador, nota, parecer).
+     */
+    public Entrevista atualizarEntrevista(String entrevistaId,
+                                          LocalDateTime dataHora,
+                                          String avaliador,
+                                          double nota,
+                                          String parecer) {
+
+        Entrevista e = entRepo.buscarPorId(entrevistaId)
+                .orElseThrow(() -> new RegraNegocioException("Entrevista não encontrada."));
+
+        // Garantir que o recrutador é responsável pela vaga daquela candidatura
+        CandidaturaDTO c = candidaturaService.buscarPorId(e.getCandidaturaId());
+        if (c == null) {
+            throw new RegraNegocioException("Candidatura não encontrada.");
+        }
+
+        Vaga v = buscarVagaDaCandidatura(c);
+        if (v == null) {
+            throw new RegraNegocioException("Vaga não encontrada para a candidatura selecionada.");
+        }
+
+        exigirRecrutadorDaVaga(v);
+
+        e.setDataHora(dataHora);
+        e.setAvaliador(avaliador);
+        e.registrarAvaliacao(nota, parecer);
+
+        return entRepo.salvar(e);
+    }
+
+    /**
+     * Exclui uma entrevista (somente recrutador responsável pela vaga).
+     */
+    public void excluirEntrevista(String entrevistaId) {
+        Entrevista e = entRepo.buscarPorId(entrevistaId)
+                .orElseThrow(() -> new RegraNegocioException("Entrevista não encontrada."));
+
+        CandidaturaDTO c = candidaturaService.buscarPorId(e.getCandidaturaId());
+        if (c == null) {
+            throw new RegraNegocioException("Candidatura não encontrada.");
+        }
+
+        Vaga v = buscarVagaDaCandidatura(c);
+        if (v == null) {
+            throw new RegraNegocioException("Vaga não encontrada para a candidatura selecionada.");
+        }
+
+        exigirRecrutadorDaVaga(v);
+
+        entRepo.remover(entrevistaId);
+    }
+
+    //====================================================
+    // AUXÍLIO PARA TELA DE ENTREVISTAS
+    //====================================================
+    /**
+     * Lista candidaturas elegíveis para solicitação de contratação:
+     * - status APROVADO
+     * - possuem ao menos uma entrevista com parecer "Solicitar contratação"
+     * - se perfil for RECRUTADOR, apenas vagas em que ele é o recrutador responsável
+     */
+    public List<CandidaturaDTO> listarCandidaturasParaSolicitarContratacao() {
+        List<CandidaturaDTO> todas = candidaturaService.listarTodas();
+        List<CandidaturaDTO> resultado = new ArrayList<>();
+
+        for (CandidaturaDTO c : todas) {
+            // Só faz sentido contratar quem está aprovado
+            if (!"APROVADO".equalsIgnoreCase(c.getStatus())) {
+                continue;
+            }
+
+            Vaga v = buscarVagaDaCandidatura(c);
+            if (v == null) {
+                continue; // candidatura aponta pra vaga inexistente
+            }
+
+            // Se for RECRUTADOR, só vê vagas em que ele é o recrutador responsável
+            if ("RECRUTADOR".equals(perfil)) {
+                if (!Objects.equals(v.getRecrutadorResponsavelCpf(), usuarioCpf)) {
+                    continue;
+                }
+            }
+
+            // Verifica se há entrevista com parecer "Solicitar contratação"
+            List<Entrevista> entrevistas = entRepo.listarPorCandidatura(c.getId());
+            boolean temParecerSolic = entrevistas.stream().anyMatch(e -> {
+                String p = e.getParecer();
+                if (p == null) return false;
+                String pNorm = p.trim().toLowerCase();
+                return pNorm.equals("solicitar contratação")
+                        || pNorm.equals("solicitar contratacao");
+            });
+
+            if (temParecerSolic) {
+                resultado.add(c);
+            }
+        }
+
+        return resultado;
+    }
+
+
+    /**
+     * Lista candidaturas que podem aparecer na tela de entrevistas.
+     * Exemplo: todas, ou só as da vaga do recrutador.
+     */
+    public List<CandidaturaDTO> listarCandidaturasParaEntrevista() {
+        List<CandidaturaDTO> todas = candidaturaService.listarTodas();
+
+        // 1) mantém só candidaturas que têm uma vaga correspondente
+        List<CandidaturaDTO> comVaga = todas.stream()
+                .filter(c -> buscarVagaDaCandidatura(c) != null)
+                .collect(Collectors.toList());
+
+        // 2) Se for RECRUTADOR, filtra apenas vagas sob sua responsabilidade
+        if ("RECRUTADOR".equals(perfil)) {
+            return comVaga.stream()
+                    .filter(c -> {
+                        Vaga v = buscarVagaDaCandidatura(c);
+                        if (v == null) return false;
+                        String resp = v.getRecrutadorResponsavelCpf();
+                        // inclui vagas sem recrutador OU com recrutador = usuário logado
+                        return resp == null || Objects.equals(resp, usuarioCpf);
+                    })
+                    .collect(Collectors.toList());
+        }
+
+        // 3) Gestor (e outros perfis) veem todas as candidaturas com vaga válida
+        return comVaga;
+    }
+
+    /**
+     * Tenta encontrar a Vaga associada a uma candidatura.
+     * Primeiro tenta por ID (UUID), depois tenta interpretar vagaId como "codigo" da vaga.
+     */
+    private Vaga buscarVagaDaCandidatura(CandidaturaDTO c) {
+        if (c == null) return null;
+
+        // 1) tenta por ID (UUID interno da vaga)
+        Optional<Vaga> opt = vagaRepo.buscarPorId(c.getVagaId());
+        if (opt.isPresent()) {
+            return opt.get();
+        }
+
+        // 2) fallback: tenta usar vagaId como "codigo amigável" (ex.: 4669066)
+        return vagaRepo.listarTodos().stream()
+                .filter(v -> c.getVagaId().equals(v.getCodigo()))
+                .findFirst()
+                .orElse(null);
+    }
+
+    /**
+     * Monta um rótulo amigável para exibir a candidatura na combobox:
+     * "CPF - Cargo da vaga (CODIGO)"
+     */
+    public String montarRotuloCandidatura(CandidaturaDTO c) {
+        if (c == null) {
+            return "";
+        }
+
+        String cpf = c.getCandidatoCpf();
+        String cargo = "";
+        String codigoVaga = "";
+
+        Vaga v = buscarVagaDaCandidatura(c);
+        if (v != null) {
+            cargo = v.getCargo();
+            codigoVaga = v.getCodigo(); // se quiser mostrar o código amigável
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(cpf);
+        if (!cargo.isBlank()) {
+            sb.append(" - ").append(cargo);
+        } else {
+            sb.append(" - Vaga ").append(c.getVagaId());
+        }
+        if (codigoVaga != null && !codigoVaga.isBlank()) {
+            sb.append(" (").append(codigoVaga).append(")");
+        }
+
+        return sb.toString();
     }
 
     //====================================================
@@ -273,8 +545,10 @@ public class RecrutamentoService {
             throw new RegraNegocioException("Candidatura não encontrada.");
         }
 
-        Vaga v = vagaRepo.buscarPorId(c.getVagaId())
-                .orElseThrow(() -> new RegraNegocioException("Vaga não encontrada."));
+        Vaga v = buscarVagaDaCandidatura(c);
+        if (v == null) {
+            throw new RegraNegocioException("Vaga não encontrada.");
+        }
 
         exigirRecrutadorDaVaga(v);
 
@@ -324,8 +598,10 @@ public class RecrutamentoService {
             throw new RegraNegocioException("Candidatura não encontrada.");
         }
 
-        Vaga v = vagaRepo.buscarPorId(c.getVagaId())
-                .orElseThrow(() -> new RegraNegocioException("Vaga não encontrada."));
+        Vaga v = buscarVagaDaCandidatura(c);
+        if (v == null) {
+            throw new RegraNegocioException("Vaga não encontrada.");
+        }
 
         exigirRecrutadorDaVaga(v);
 
@@ -344,7 +620,6 @@ public class RecrutamentoService {
         // Chama serviço do módulo Financeiro
         financeiroService.cadastrarFuncionario(func);
 
-        // Também mantém a simulação em log, se quiser
         System.out.println("[FINANCEIRO] Novo funcionário cadastrado: CPF " + func.getCpf()
                 + " | Cargo: " + func.getCargo()
                 + " | Salário: " + func.getSalarioBase()
@@ -363,7 +638,6 @@ public class RecrutamentoService {
 
     /**
      * Lista candidaturas de uma vaga usando o serviço de Candidatura.
-     * Apenas leitura, sem manipular domínio de Candidatura.
      */
     public List<CandidaturaDTO> listarCandidaturasDaVaga(String vagaId) {
         return candidaturaService.listarPorVaga(vagaId);
