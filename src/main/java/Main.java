@@ -1,5 +1,3 @@
-package main;
-
 import javax.swing.*;
 
 import main.ui.TelaLogin;

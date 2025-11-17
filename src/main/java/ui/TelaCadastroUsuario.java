@@ -1,4 +1,4 @@
-package main.ui;
+package ui;
 
 import Seguranca.dominio.Usuario;
 import Candidatura.excecoes.RegraNegocioException;

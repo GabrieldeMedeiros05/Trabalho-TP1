@@ -1,4 +1,4 @@
-package main;
+package utils;
 
 import Seguranca.persistencia.UsuarioRepository;
 import Seguranca.persistencia.csv.UsuarioRepositoryCsv;
