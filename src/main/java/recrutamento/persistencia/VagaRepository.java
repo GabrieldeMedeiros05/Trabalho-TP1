@@ -1,7 +1,11 @@
 package recrutamento.persistencia;
 
-import recrutamento.dominio.*;
-import java.util.*;
+import recrutamento.dominio.RegimeContratacao;
+import recrutamento.dominio.StatusVaga;
+import recrutamento.dominio.Vaga;
+
+import java.util.List;
+import java.util.Optional;
 
 public interface VagaRepository {
     Vaga salvar(Vaga v);
