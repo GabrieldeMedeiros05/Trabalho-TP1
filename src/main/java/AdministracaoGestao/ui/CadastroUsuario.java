@@ -1,3 +1,4 @@
+package AdministracaoGestao.ui;
 
 import javax.swing.*;
 import java.awt.*;

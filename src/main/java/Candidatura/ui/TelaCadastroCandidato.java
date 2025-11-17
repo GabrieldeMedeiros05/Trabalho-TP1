@@ -3,7 +3,7 @@ package Candidatura.ui;
 import Candidatura.dominio.Candidato;
 import Candidatura.servico.CandidaturaService;
 import Seguranca.servico.UsuarioService; // Importa o serviço de segurança
-import main.AppConfig; // Importa a configuração global
+import utils.AppConfig; // Importa a configuração global
 
 import javax.swing.*;
 import java.awt.*;

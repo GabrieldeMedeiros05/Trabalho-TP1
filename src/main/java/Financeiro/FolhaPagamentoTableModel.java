@@ -1,17 +1,17 @@
 package Financeiro;
 
-import Seguranca.dominio.Funcionario;
-
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
-public class FuncionarioTableModel extends AbstractTableModel {
+import Seguranca.dominio.Funcionario;
 
+
+public class FolhaPagamentoTableModel extends AbstractTableModel {
 
     private List<Funcionario> funcionarios;
-    private String[] colunas = {"Matrícula", "Nome", "Cargo", "Departamento", "Status", "Tipo", "Salário Base", "Salário Líquido", "Impostos Retidos"};
+    private String[] colunas = {"Matrícula", "Nome", "Cargo", "Departamento", "Status", "Tipo", "Salário Líquido", "Impostos Retidos"};
 
-    public FuncionarioTableModel(List<Funcionario> dados) {
+    public FolhaPagamentoTableModel(List<Funcionario> dados) {
         this.funcionarios = dados;
     }
 
@@ -46,9 +46,8 @@ public class FuncionarioTableModel extends AbstractTableModel {
             case 3: return f.getDepartamento();
             case 4: return f.getStatus();
             case 5: return f.getTipoContrato();
-            case 6: return String.format("%.2f", f.getSalarioBase());
-            case 7: return String.format("%.2f", f.calculaSalarioLiquido());
-            case 8: return String.format("%.2f", f.getImposto());
+            case 6: return String.format("R$ %.2f", f.calculaSalarioLiquido());
+            case 7: return String.format("R$ %.2f", f.getImposto());
             default: return null;
         }
     }

@@ -1,11 +1,10 @@
-package main.ui;
+package ui;
 
 import Seguranca.dominio.Usuario;
 import Candidatura.excecoes.AutorizacaoException;
 import Seguranca.servico.UsuarioService;
 import Candidatura.ui.MenuCandidato; // Importa o novo menu do candidato
-import Candidatura.ui.TelaVerMinhasCandidaturas; // Tela de visualização
-import main.AppConfig;
+import utils.AppConfig;
 
 import javax.swing.*;
 import java.awt.*;

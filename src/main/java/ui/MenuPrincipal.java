@@ -1,4 +1,4 @@
-package main.ui;
+package ui;
 
 import Candidatura.ui.MenuCandidatura;
 import Financeiro.ui.TelaFinanceiro;
