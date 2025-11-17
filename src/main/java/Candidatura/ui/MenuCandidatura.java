@@ -15,7 +15,7 @@ public class MenuCandidatura extends JFrame {
 
     public MenuCandidatura() {
         setTitle("Candidatura • Menu");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
         JLabel lbl = new JLabel("Menu de Candidatura", SwingConstants.CENTER);

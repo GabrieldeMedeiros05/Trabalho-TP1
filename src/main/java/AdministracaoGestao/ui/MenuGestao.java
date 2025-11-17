@@ -1,10 +1,8 @@
 package AdministracaoGestao.ui;
 
-// import Gestao.ui.CadastroUsuario;
-// import Gestao.ui.ExcluiUsuario;
-
 import java.awt.*;
 import javax.swing.*;
+import static utils.Constantes.COR_DE_FUNDO;
 
 public class MenuGestao extends JFrame {
 
@@ -32,7 +30,7 @@ public class MenuGestao extends JFrame {
     public JPanel mainPanel(){
 
         JPanel panel = new JPanel(null);
-        panel.setBackground(new Color(10,20,30));
+        panel.setBackground(COR_DE_FUNDO);
 
         panel.add(upPanel());
         panel.add(midPanel());
@@ -44,7 +42,7 @@ public class MenuGestao extends JFrame {
     public JPanel upPanel(){
 
         JPanel panel = new JPanel(null);
-        panel.setBackground(new Color(10,20,30));
+        panel.setBackground(COR_DE_FUNDO);
         panel.setBounds(20,40,1280,100);
 
         JLabel title = new JLabel("Administração/Gestão de Usuário");
@@ -72,7 +70,7 @@ public class MenuGestao extends JFrame {
         panel.setLayout(new GridLayout(2,3,150,110));
 
         panel.setBounds(100, 220, 1100, 220);
-        panel.setBackground(new Color(10,20,30));
+        panel.setBackground(COR_DE_FUNDO);
 
         JPanel panel1 = new JPanel(new GridLayout(1, 1));
 
@@ -155,7 +153,7 @@ public class MenuGestao extends JFrame {
     public JPanel lowerPanel(){
 
         JPanel panel = new JPanel(null);
-        panel.setBackground(new Color(10,20,30));
+        panel.setBackground(COR_DE_FUNDO);
         panel.setBounds(300,540,1280,120);
 
         botao = new JButton("Gerar Relatório");

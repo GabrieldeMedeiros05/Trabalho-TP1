@@ -8,6 +8,8 @@ import utils.AppConfig;
 import java.awt.*;
 import javax.swing.*;
 
+import static utils.Constantes.COR_DE_FUNDO;
+
 public class CadastroUsuario extends JFrame {
     // Injeção do serviço de segurança
     private final UsuarioService usuarioService = AppConfig.usuarioService();
@@ -85,7 +87,7 @@ public class CadastroUsuario extends JFrame {
     public JPanel mainPanel(){
 
         JPanel panel = new JPanel(null);
-        panel.setBackground(new Color(10,20,30));
+        panel.setBackground(COR_DE_FUNDO);
 
         panel.add(upPanel());
         panel.add(midPanel());
@@ -98,7 +100,7 @@ public class CadastroUsuario extends JFrame {
     public JPanel upPanel(){
 
         JPanel panel = new JPanel(null);
-        panel.setBackground(new Color(10,20,30));
+        panel.setBackground(COR_DE_FUNDO);
         panel.setBounds(0,40,1280,100);
 
         JLabel title = new JLabel("Cadastro de Usuário");
@@ -116,7 +118,7 @@ public class CadastroUsuario extends JFrame {
 
         JPanel panel = new JPanel(new GridLayout(5, 1, 0, 20));
         panel.setBounds(80, 180, 150, 320);
-        panel.setBackground(new Color(10,20,30));
+        panel.setBackground(COR_DE_FUNDO);
 
         JLabel labelNome = new JLabel("Nome");
         labelNome.setForeground(new Color(240,246,252));
@@ -151,7 +153,7 @@ public class CadastroUsuario extends JFrame {
 
         JPanel panel = new JPanel(new GridLayout(5, 1, 0, 20));
         panel.setBounds(270, 180, 860, 320);
-        panel.setBackground(new Color(10,20,30));
+        panel.setBackground(COR_DE_FUNDO);
 
 
         textNome = new JTextField();
@@ -198,7 +200,7 @@ public class CadastroUsuario extends JFrame {
     public JPanel lowerPanel(){
 
         JPanel panel = new JPanel(null);
-        panel.setBackground(new Color(10,20,30));
+        panel.setBackground(COR_DE_FUNDO);
         panel.setBounds(300,540,1280,120);
 
         botaoCadastrar = new JButton("Cadastrar");

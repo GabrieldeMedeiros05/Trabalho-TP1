@@ -9,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Optional;
 
+import static utils.Constantes.COR_DE_FUNDO;
+
 public class ValidarCpfPesquisar extends JFrame{
 
     private final UsuarioService usuarioService = AppConfig.usuarioService();
@@ -61,7 +63,7 @@ public class ValidarCpfPesquisar extends JFrame{
     public JPanel mainPanel(){
 
         JPanel panel = new JPanel(null);
-        panel.setBackground(new Color(10,20,30));
+        panel.setBackground(COR_DE_FUNDO);
 
         panel.add(upPanel());
         panel.add(midPanel());
@@ -74,7 +76,7 @@ public class ValidarCpfPesquisar extends JFrame{
     public JPanel upPanel(){
 
         JPanel panel = new JPanel(null);
-        panel.setBackground(new Color(10,20,30));
+        panel.setBackground(COR_DE_FUNDO);
         panel.setBounds(0,40,1280,100);
 
         JLabel title = new JLabel("Pesquisar Usuário");
@@ -92,7 +94,7 @@ public class ValidarCpfPesquisar extends JFrame{
 
         JPanel panel = new JPanel(new GridLayout(2, 1, 0, 70));
         panel.setBounds(80, 215, 150, 200);
-        panel.setBackground(new Color(10,20,30));
+        panel.setBackground(COR_DE_FUNDO);
 
         JLabel labelNome = new JLabel("Nome");
         labelNome.setForeground(new Color(240,246,252));
@@ -112,7 +114,7 @@ public class ValidarCpfPesquisar extends JFrame{
 
         JPanel panel2 = new JPanel(new GridLayout(2, 1, 0, 70));
         panel2.setBounds(250, 215, 860, 200);
-        panel2.setBackground(new Color(10,20,30));
+        panel2.setBackground(COR_DE_FUNDO);
 
 
         textNome = new JTextField();
@@ -138,7 +140,7 @@ public class ValidarCpfPesquisar extends JFrame{
     public JPanel lowerPanel(){
 
         JPanel panel = new JPanel(null);
-        panel.setBackground(new Color(10,20,30));
+        panel.setBackground(COR_DE_FUNDO);
         panel.setBounds(300,520,1280,120);
 
 

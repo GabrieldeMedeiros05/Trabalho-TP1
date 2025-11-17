@@ -3,9 +3,6 @@ package Seguranca.dominio;
 // Importes necessários para o código (verifique se os caminhos estão corretos no seu ambiente)
 // Nota: Você deve ter o AdministracaoGestao no seu classpath para compilar
 // Nota: Você deve ter a Candidatura.excecoes.AutorizacaoException acessível
-import AdministracaoGestao.modelos.GestorMaster;
-import Candidatura.excecoes.AutorizacaoException;
-import java.util.ArrayList;
 
 public class Usuario extends Pessoa {
 
@@ -14,7 +11,6 @@ public class Usuario extends Pessoa {
     private String senha;
     private String tipo;
 
-    private ArrayList<Usuario> usuarios = new ArrayList<>(); // Armazenamento interno (original)
 
     // --- CONSTRUTOR 1: PARA PERSISTÊNCIA CSV (COMPLETO) ---
     public Usuario (long idUsuario, String login, String senha, String tipo,
@@ -37,18 +33,6 @@ public class Usuario extends Pessoa {
         this.tipo = tipo;
     }
 
-    // --- CONSTRUTOR 3: COM GESTOR MASTER (ORIGINAL) ---
-    public Usuario (long idUsuario, String login, String senha, String tipo, GestorMaster gestor)  {
-
-        if (gestor != null) {
-            this.idUsuario = idUsuario;
-            this.login = login;
-            this.senha = senha;
-            this.tipo = tipo;
-        } else {
-            throw new AutorizacaoException("Apenas o GestorMaster pode alterar os dados do usuário.");
-        }
-    }
 
     // --- GETTERS (ORIGINAIS) ---
 
@@ -64,45 +48,6 @@ public class Usuario extends Pessoa {
     public void setSenha (String senha) { this.senha = senha; }
     public void setTipo (String tipo) { this.tipo = tipo; }
 
-
-    // --- SETTERS COM GESTOR MASTER (ORIGINAIS) ---
-
-    public void setIdUsuario (long idUsuario, GestorMaster gestor) {
-
-        if (gestor != null) {
-            this.idUsuario = idUsuario;
-        } else {
-            throw new AutorizacaoException("Apenas o GestorMaster pode alterar os dados do usuário.");
-        }
-    }
-
-    public void setLogin (String login, GestorMaster gestor) {
-
-        if (gestor != null) {
-            this.login = login;
-        } else {
-            throw new AutorizacaoException("Apenas o GestorMaster pode alterar os dados do usuário.");
-        }
-    }
-
-    public void setSenha (String senha, GestorMaster gestor) {
-
-        if (gestor != null) {
-            this.senha = senha;
-        } else {
-            throw new AutorizacaoException("Apenas o GestorMaster pode alterar os dados do usuário.");
-        }
-    }
-
-    public void setTipo (String tipo, GestorMaster gestor) {
-
-        if (gestor != null) {
-            this.tipo = tipo;
-        } else {
-            throw new AutorizacaoException("Apenas o GestorMaster pode alterar os dados do usuário.");
-        }
-    }
-
     // --- MÉTODOS DE LÓGICA (ORIGINAIS) ---
 
     public boolean autenticar (String login, String senha) {
@@ -110,15 +55,4 @@ public class Usuario extends Pessoa {
         return this.login.equals(login) && this.senha != null && this.senha.equals(senha);
     }
 
-    public Usuario pesquisarUsuario (String status) {
-
-        for (Usuario usuario : usuarios) {
-            if (status.equals(usuario.getStatus())) {
-
-                return usuario;
-            }
-        }
-
-        return null;
-    }
 }
