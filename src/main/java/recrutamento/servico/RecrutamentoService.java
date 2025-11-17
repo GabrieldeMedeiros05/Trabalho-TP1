@@ -1,7 +1,11 @@
 package recrutamento.servico;
 
 import Seguranca.dominio.Usuario;
-import recrutamento.dominio.*;
+import recrutamento.dominio.Contratacao;
+import recrutamento.dominio.Entrevista;
+import recrutamento.dominio.RegimeContratacao;
+import recrutamento.dominio.StatusVaga;
+import recrutamento.dominio.Vaga;
 import recrutamento.dto.CandidaturaDTO;
 import recrutamento.dto.FuncionarioDTO;
 import recrutamento.excecoes.AutorizacaoException;
